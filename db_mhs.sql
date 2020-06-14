@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Agu 2019 pada 02.25
--- Versi server: 10.1.36-MariaDB
--- Versi PHP: 7.2.11
+-- Generation Time: Jun 14, 2020 at 04:07 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pontren`
+-- Database: `db_mhs`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `alternatif`
+-- Table structure for table `alternatif`
 --
 
 CREATE TABLE `alternatif` (
@@ -37,7 +37,7 @@ CREATE TABLE `alternatif` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `alternatif`
+-- Dumping data for table `alternatif`
 --
 
 INSERT INTO `alternatif` (`id_alternatif`, `id_dataponpes`, `x1`, `x2`, `x3`) VALUES
@@ -56,7 +56,18 @@ INSERT INTO `alternatif` (`id_alternatif`, `id_dataponpes`, `x1`, `x2`, `x3`) VA
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `daerah`
+-- Table structure for table `angkatan`
+--
+
+CREATE TABLE `angkatan` (
+  `id` varchar(5) DEFAULT NULL,
+  `angka` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `daerah`
 --
 
 CREATE TABLE `daerah` (
@@ -65,7 +76,7 @@ CREATE TABLE `daerah` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `daerah`
+-- Dumping data for table `daerah`
 --
 
 INSERT INTO `daerah` (`id_daerah`, `jenis_daerah`) VALUES
@@ -75,7 +86,7 @@ INSERT INTO `daerah` (`id_daerah`, `jenis_daerah`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `dataponpes`
+-- Table structure for table `dataponpes`
 --
 
 CREATE TABLE `dataponpes` (
@@ -97,7 +108,7 @@ CREATE TABLE `dataponpes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `dataponpes`
+-- Dumping data for table `dataponpes`
 --
 
 INSERT INTO `dataponpes` (`id_ponpes`, `nspp`, `nama_ponpes`, `alamat`, `id_kecamatan`, `tgl_berdiri`, `yayasan`, `id_daerah`, `jumlah_santri`, `jumlah_tenaga`, `jumlah_unit`, `lat`, `lon`, `pengupdate`, `tgl_update`) VALUES
@@ -111,12 +122,13 @@ INSERT INTO `dataponpes` (`id_ponpes`, `nspp`, `nama_ponpes`, `alamat`, `id_keca
 ('P0010', '510335160015', 'FATCHUL ULUM', 'Jl. Moch. Sholeh 270, Pacet, Pacet', 13, '1990-08-17', 'Yayasan Saraswati Mojokerto', 1, 514, 34, 5, -7.666422, 112.540434, 'already@gmail.com', 1565573147),
 ('P0011', '510035160052', 'INDUK MAMBA\'UL ULUM', 'Jl. Raya Mojosari Pacet	Awang-Awang, Mojosari', 11, '1958-06-17', 'Yayasan Mamba\'ul Ulum Mojokerto', 1, 217, 37, 6, -7.533938, 112.55336, 'already@gmail.com', 1565656979),
 ('P0012', '510035160053', 'MAMBA\'UL ULUM', 'Jl. A. Yani, Awang-Awang, Mojosari', 11, '1958-06-17', 'Yayasan Madrasah Salafiyah Mamba\'ul Ulum Mojokerto', 1, 1096, 55, 6, -7.532775, 112.553248, 'already@gmail.com', 1565657131),
-('P0013', '51003512187', 'Pondok Pesantren Al Azhar', 'Magersari, Kota Mojokerto', 15, '1988-10-23', '', 2, 76, 30, 4, -7.468262, 112.433739, 'already@gmail.com', 1565744958);
+('P0013', '51003512187', 'Pondok Pesantren Al Azhar', 'Magersari, Kota Mojokerto', 15, '1988-10-23', '', 2, 76, 30, 4, -7.468262, 112.433739, 'already@gmail.com', 1565744958),
+('P0014', '928342984', 'ha yo iku', 'asudahlah pokoe', 16, '1998-04-23', '', 1, 12, 23, 0, -7.1695769, 113.0201912, 'already@gmail.com', 1592030554);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `hasil`
+-- Table structure for table `hasil`
 --
 
 CREATE TABLE `hasil` (
@@ -129,7 +141,7 @@ CREATE TABLE `hasil` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `hasil`
+-- Dumping data for table `hasil`
 --
 
 INSERT INTO `hasil` (`id_hasil`, `id_ponpes`, `c1`, `c2`, `c3`, `id_cluster`) VALUES
@@ -148,7 +160,29 @@ INSERT INTO `hasil` (`id_hasil`, `id_ponpes`, `c1`, `c2`, `c3`, `id_cluster`) VA
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kecamatan`
+-- Table structure for table `jurus`
+--
+
+CREATE TABLE `jurus` (
+  `id` varchar(5) DEFAULT NULL,
+  `jurusan` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kabupaten`
+--
+
+CREATE TABLE `kabupaten` (
+  `id` varchar(5) DEFAULT NULL,
+  `kab` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kecamatan`
 --
 
 CREATE TABLE `kecamatan` (
@@ -157,7 +191,7 @@ CREATE TABLE `kecamatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `kecamatan`
+-- Dumping data for table `kecamatan`
 --
 
 INSERT INTO `kecamatan` (`id_kecamatan`, `kec`) VALUES
@@ -183,17 +217,28 @@ INSERT INTO `kecamatan` (`id_kecamatan`, `kec`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kriteria`
+-- Table structure for table `kota`
+--
+
+CREATE TABLE `kota` (
+  `id` varchar(5) DEFAULT NULL,
+  `kot` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kriteria`
 --
 
 CREATE TABLE `kriteria` (
   `id_kriteria` int(11) NOT NULL,
   `nama_kriteria` varchar(32) NOT NULL,
-  `keterangan` text
+  `keterangan` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `kriteria`
+-- Dumping data for table `kriteria`
 --
 
 INSERT INTO `kriteria` (`id_kriteria`, `nama_kriteria`, `keterangan`) VALUES
@@ -204,7 +249,7 @@ INSERT INTO `kriteria` (`id_kriteria`, `nama_kriteria`, `keterangan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `max_cluster`
+-- Table structure for table `max_cluster`
 --
 
 CREATE TABLE `max_cluster` (
@@ -213,7 +258,7 @@ CREATE TABLE `max_cluster` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `max_cluster`
+-- Dumping data for table `max_cluster`
 --
 
 INSERT INTO `max_cluster` (`id_cluster`, `max`) VALUES
@@ -232,7 +277,30 @@ INSERT INTO `max_cluster` (`id_cluster`, `max`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ponpes_unit`
+-- Table structure for table `mhs`
+--
+
+CREATE TABLE `mhs` (
+  `id` varchar(15) NOT NULL,
+  `nama` varchar(128) DEFAULT NULL,
+  `jk` varchar(2) DEFAULT NULL,
+  `kewarganegaraan` varchar(5) DEFAULT NULL,
+  `stts_sipil` varchar(20) DEFAULT NULL,
+  `alamat` varchar(128) DEFAULT NULL,
+  `asal_sekolah` varchar(50) DEFAULT NULL,
+  `jurusan` varchar(25) DEFAULT NULL,
+  `thn_lulus` int(4) DEFAULT NULL,
+  `prodi1` varchar(25) DEFAULT NULL,
+  `prodi2` varchar(25) DEFAULT NULL,
+  `prodi3` varchar(25) DEFAULT NULL,
+  `dtail_pres` varchar(128) DEFAULT NULL,
+  `pilihan_kls` varchar(5) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ponpes_unit`
 --
 
 CREATE TABLE `ponpes_unit` (
@@ -242,7 +310,7 @@ CREATE TABLE `ponpes_unit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `ponpes_unit`
+-- Dumping data for table `ponpes_unit`
 --
 
 INSERT INTO `ponpes_unit` (`id`, `id_ponpes`, `nama_unit`) VALUES
@@ -332,7 +400,18 @@ INSERT INTO `ponpes_unit` (`id`, `id_ponpes`, `nama_unit`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `program_pendidikan`
+-- Table structure for table `prodi`
+--
+
+CREATE TABLE `prodi` (
+  `id` varchar(5) DEFAULT NULL,
+  `prodi` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `program_pendidikan`
 --
 
 CREATE TABLE `program_pendidikan` (
@@ -341,7 +420,7 @@ CREATE TABLE `program_pendidikan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `program_pendidikan`
+-- Dumping data for table `program_pendidikan`
 --
 
 INSERT INTO `program_pendidikan` (`id_program`, `nama_program`) VALUES
@@ -353,7 +432,19 @@ INSERT INTO `program_pendidikan` (`id_program`, `nama_program`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_access`
+-- Table structure for table `sklh`
+--
+
+CREATE TABLE `sklh` (
+  `id` varchar(15) NOT NULL,
+  `nama_sklh` varchar(128) DEFAULT NULL,
+  `alamat` varchar(128) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_access`
 --
 
 CREATE TABLE `tb_access` (
@@ -363,7 +454,7 @@ CREATE TABLE `tb_access` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_access`
+-- Dumping data for table `tb_access`
 --
 
 INSERT INTO `tb_access` (`id`, `role_id`, `menu_id`) VALUES
@@ -377,7 +468,7 @@ INSERT INTO `tb_access` (`id`, `role_id`, `menu_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_role`
+-- Table structure for table `tb_role`
 --
 
 CREATE TABLE `tb_role` (
@@ -386,7 +477,7 @@ CREATE TABLE `tb_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_role`
+-- Dumping data for table `tb_role`
 --
 
 INSERT INTO `tb_role` (`id`, `role`) VALUES
@@ -396,7 +487,7 @@ INSERT INTO `tb_role` (`id`, `role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_user`
+-- Table structure for table `tb_user`
 --
 
 CREATE TABLE `tb_user` (
@@ -417,17 +508,18 @@ CREATE TABLE `tb_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_user`
+-- Dumping data for table `tb_user`
 --
 
 INSERT INTO `tb_user` (`id`, `nama`, `email`, `gambar`, `password`, `role_id`, `nspp`, `nip`, `almt`, `tgl_lhr`, `telp`, `is_active`, `status`, `tgl_buat`) VALUES
 (1, 'Gilang Permadi', 'already@gmail.com', 'default1.jpg', '$2y$10$XfT.NN86V2fVtX9iZJm3ceqoO5tdGGHQDgzUj9fWr2zEj19iw53rK', 1, '', '', '', '2019-04-05', 0, 1, 1, 1557215287),
-(2, 'Gilang Permadi', 'gilangpermadi66@gmail.com', 'default.jpg', '$2y$10$LC7TrlHjIHCQvMUDgLzqw.wXU12f9qtuKsYuys8m.BGnCOz2ykIWe', 2, '510035160003', '0', 'Pacet', '2001-11-25', 815492482, 0, 0, 1566432670);
+(2, 'Gilang Permadi', 'gilangpermadi66@gmail.com', 'default.jpg', '$2y$10$LC7TrlHjIHCQvMUDgLzqw.wXU12f9qtuKsYuys8m.BGnCOz2ykIWe', 2, '510035160003', '0', 'Pacet', '2001-11-25', 815492482, 0, 0, 1566432670),
+(3, 'Ainur Rohman', 'rohman.rrxman@gmail.com', 'default.jpg', '$2y$10$OAAOQuS71hkdEC44gKmJb.C5WWt/H5u0nhW3VkUNCZYgb7poM1hRG', 2, '928342984', '1234', 'Jombang', '2020-06-13', 8574544, 1, 1, 1592032119);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_usermenu`
+-- Table structure for table `tb_usermenu`
 --
 
 CREATE TABLE `tb_usermenu` (
@@ -437,7 +529,7 @@ CREATE TABLE `tb_usermenu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_usermenu`
+-- Dumping data for table `tb_usermenu`
 --
 
 INSERT INTO `tb_usermenu` (`id`, `menu`, `alias`) VALUES
@@ -451,7 +543,7 @@ INSERT INTO `tb_usermenu` (`id`, `menu`, `alias`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_usersubmenu`
+-- Table structure for table `tb_usersubmenu`
 --
 
 CREATE TABLE `tb_usersubmenu` (
@@ -464,7 +556,7 @@ CREATE TABLE `tb_usersubmenu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_usersubmenu`
+-- Dumping data for table `tb_usersubmenu`
 --
 
 INSERT INTO `tb_usersubmenu` (`id`, `id_menu`, `judul`, `url`, `icon`, `aktif`) VALUES
@@ -484,7 +576,7 @@ INSERT INTO `tb_usersubmenu` (`id`, `id_menu`, `judul`, `url`, `icon`, `aktif`) 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tb_usertoken`
+-- Table structure for table `tb_usertoken`
 --
 
 CREATE TABLE `tb_usertoken` (
@@ -495,30 +587,33 @@ CREATE TABLE `tb_usertoken` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tb_usertoken`
+-- Dumping data for table `tb_usertoken`
 --
 
 INSERT INTO `tb_usertoken` (`id`, `email`, `token`, `date_created`) VALUES
-(1, 'gilangpermadi66@gmail.com', 'JPdZzQA2mks3fFqY3Ay5N7rxg3+z7x8wqGSN52ssc/g=', 1566432670);
+(1, 'gilangpermadi66@gmail.com', 'JPdZzQA2mks3fFqY3Ay5N7rxg3+z7x8wqGSN52ssc/g=', 1566432670),
+(2, 'rohman.rrxman@gmail.com', 'O+PWszvvc1NlKBZKv8Kn0wsAujhjj0tPMX+dgZigd7U=', 1592030879),
+(3, 'rohman.rrxman@gmail.com', 'L9BhqA99OrFl+6IqfuM90eOSRG1o4hB0E/K1frCOiy8=', 1592031621),
+(4, 'rohman.rrxman@gmail.com', 'ndt+4B4UOiq8YYd+JifTOWOra/0RdCrMf7H8fIXsO/8=', 1592032119);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `alternatif`
+-- Indexes for table `alternatif`
 --
 ALTER TABLE `alternatif`
   ADD PRIMARY KEY (`id_alternatif`);
 
 --
--- Indeks untuk tabel `daerah`
+-- Indexes for table `daerah`
 --
 ALTER TABLE `daerah`
   ADD PRIMARY KEY (`id_daerah`);
 
 --
--- Indeks untuk tabel `dataponpes`
+-- Indexes for table `dataponpes`
 --
 ALTER TABLE `dataponpes`
   ADD PRIMARY KEY (`id_ponpes`),
@@ -527,44 +622,56 @@ ALTER TABLE `dataponpes`
   ADD KEY `id_ponpes` (`id_ponpes`);
 
 --
--- Indeks untuk tabel `hasil`
+-- Indexes for table `hasil`
 --
 ALTER TABLE `hasil`
   ADD PRIMARY KEY (`id_hasil`);
 
 --
--- Indeks untuk tabel `kecamatan`
+-- Indexes for table `kecamatan`
 --
 ALTER TABLE `kecamatan`
   ADD PRIMARY KEY (`id_kecamatan`);
 
 --
--- Indeks untuk tabel `kriteria`
+-- Indexes for table `kriteria`
 --
 ALTER TABLE `kriteria`
   ADD PRIMARY KEY (`id_kriteria`);
 
 --
--- Indeks untuk tabel `max_cluster`
+-- Indexes for table `max_cluster`
 --
 ALTER TABLE `max_cluster`
   ADD PRIMARY KEY (`id_cluster`);
 
 --
--- Indeks untuk tabel `ponpes_unit`
+-- Indexes for table `mhs`
+--
+ALTER TABLE `mhs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `ponpes_unit`
 --
 ALTER TABLE `ponpes_unit`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_ponpes` (`id_ponpes`);
 
 --
--- Indeks untuk tabel `program_pendidikan`
+-- Indexes for table `program_pendidikan`
 --
 ALTER TABLE `program_pendidikan`
   ADD PRIMARY KEY (`id_program`);
 
 --
--- Indeks untuk tabel `tb_access`
+-- Indexes for table `sklh`
+--
+ALTER TABLE `sklh`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tb_access`
 --
 ALTER TABLE `tb_access`
   ADD PRIMARY KEY (`id`),
@@ -572,131 +679,131 @@ ALTER TABLE `tb_access`
   ADD KEY `menu_id` (`menu_id`);
 
 --
--- Indeks untuk tabel `tb_role`
+-- Indexes for table `tb_role`
 --
 ALTER TABLE `tb_role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tb_user`
+-- Indexes for table `tb_user`
 --
 ALTER TABLE `tb_user`
   ADD PRIMARY KEY (`id`),
   ADD KEY `role_id` (`role_id`);
 
 --
--- Indeks untuk tabel `tb_usermenu`
+-- Indexes for table `tb_usermenu`
 --
 ALTER TABLE `tb_usermenu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tb_usersubmenu`
+-- Indexes for table `tb_usersubmenu`
 --
 ALTER TABLE `tb_usersubmenu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tb_usertoken`
+-- Indexes for table `tb_usertoken`
 --
 ALTER TABLE `tb_usertoken`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `alternatif`
+-- AUTO_INCREMENT for table `alternatif`
 --
 ALTER TABLE `alternatif`
   MODIFY `id_alternatif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `hasil`
+-- AUTO_INCREMENT for table `hasil`
 --
 ALTER TABLE `hasil`
   MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `kecamatan`
+-- AUTO_INCREMENT for table `kecamatan`
 --
 ALTER TABLE `kecamatan`
   MODIFY `id_kecamatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT untuk tabel `kriteria`
+-- AUTO_INCREMENT for table `kriteria`
 --
 ALTER TABLE `kriteria`
   MODIFY `id_kriteria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `max_cluster`
+-- AUTO_INCREMENT for table `max_cluster`
 --
 ALTER TABLE `max_cluster`
   MODIFY `id_cluster` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `ponpes_unit`
+-- AUTO_INCREMENT for table `ponpes_unit`
 --
 ALTER TABLE `ponpes_unit`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
--- AUTO_INCREMENT untuk tabel `program_pendidikan`
+-- AUTO_INCREMENT for table `program_pendidikan`
 --
 ALTER TABLE `program_pendidikan`
   MODIFY `id_program` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_access`
+-- AUTO_INCREMENT for table `tb_access`
 --
 ALTER TABLE `tb_access`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_role`
+-- AUTO_INCREMENT for table `tb_role`
 --
 ALTER TABLE `tb_role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_user`
+-- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_usermenu`
+-- AUTO_INCREMENT for table `tb_usermenu`
 --
 ALTER TABLE `tb_usermenu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_usersubmenu`
+-- AUTO_INCREMENT for table `tb_usersubmenu`
 --
 ALTER TABLE `tb_usersubmenu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_usertoken`
+-- AUTO_INCREMENT for table `tb_usertoken`
 --
 ALTER TABLE `tb_usertoken`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `tb_access`
+-- Constraints for table `tb_access`
 --
 ALTER TABLE `tb_access`
   ADD CONSTRAINT `tb_access_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `tb_role` (`id`),
   ADD CONSTRAINT `tb_access_ibfk_2` FOREIGN KEY (`menu_id`) REFERENCES `tb_usermenu` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `tb_user`
+-- Constraints for table `tb_user`
 --
 ALTER TABLE `tb_user`
   ADD CONSTRAINT `tb_user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `tb_role` (`id`);
