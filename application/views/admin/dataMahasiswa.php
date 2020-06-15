@@ -10,8 +10,8 @@
           <?php endif; ?>
 
           <?= $this->session->flashdata('message'); ?>
-          <a href="<?php echo base_url('admin/add_data'); ?>" class="btn btn-success">Tambah Data</a>
-          <a href="<?php echo base_url('admin/preview'); ?>" class="btn btn-warning">Import Data</a>
+          <a href="<?php echo base_url('admin/add_data'); ?>" class="btn btn-primary">Tambah Data</a>
+          <a href="<?php echo base_url('admin/preview'); ?>" class="btn btn-success">Import Data</a>
           
           <div>
 
@@ -20,25 +20,25 @@
                 <thead>
                   <tr style="text-align: center;">
                     <th>#</th>
-                    <th>NSPP</th>
-                    <th>Nama</th>                    
-                    <th>Alamat</th>
+                    <th>Nama</th>
+                    <th>Kota/Kabupaten</th>                    
+                    <th>Sekolah Asal</th>
                     <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php $no = 0;
-                  foreach ($dataPonpes as $ponpes) {
+                  foreach ($dataMahasiswa as $mahasiswa) {
                     ?>
                     <tr>
                       <td><?php echo ++$no; ?></td>
-                      <td><?php echo $ponpes['nspp'];?></td>
-                      <td><?php echo $ponpes['nama_ponpes'];?></td>
-                      <td><?php echo $ponpes['alamat'];?></td>
+                      <td><?php echo $mahasiswa['nama'];?></td>
+                      <td><?php echo $mahasiswa['kab/kot'];?></td>
+                      <td><?php echo $mahasiswa['asal_sekolah'];?></td>
                       <td>
-                        <a class="badge badge-pill badge-success" href="<?php echo base_url('admin/edit_data/') . $ponpes['id_ponpes']; ?>">Edit</a>
-                        <a class="badge badge-pill badge-warning" href="<?php echo base_url('admin/detail/') . $ponpes['id_ponpes']; ?>">Detil</a>
-                        <a class="badge badge-pill badge-danger" data-toggle="modal" data-target="#modalHapus" href="<?php echo base_url('admin/hapus/') . $ponpes['id_ponpes']; ?>">Hapus</a>
+                        <a class="badge badge-pill badge-success" href="<?php echo base_url('admin/edit_data/') . $mahasiswa['id']; ?>">Edit</a>
+                        <a class="badge badge-pill badge-warning" href="<?php echo base_url('admin/detail/') . $mahasiswa['id']; ?>">Detil</a>
+                        <a class="badge badge-pill badge-danger" data-toggle="modal" data-target="#modalHapus" href="<?php echo base_url('admin/hapus/') . $mahasiswa['id']; ?>">Hapus</a>
                       </td>
                     </tr>
                   <?php } ?>
@@ -66,10 +66,10 @@
                 <span aria-hidden="true">×</span>
               </button>
             </div>
-            <div class="modal-body">Yakin ingin menghapus "<?php echo $ponpes['nama_ponpes']; ?>"?</div>
+            <div class="modal-body">Yakin ingin menghapus "<?php echo $mahasiswa['id']; ?>"?</div>
             <div class="modal-footer">
               <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-              <a class="btn btn-danger" href="<?php echo base_url('admin/hapus/') . $ponpes['id_ponpes']; ?>">Hapus</a>
+              <a class="btn btn-danger" href="<?php echo base_url('admin/hapus/') . $mahasiswa['id']; ?>">Hapus</a>
             </div>
           </div>
         </div>

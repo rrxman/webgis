@@ -12,14 +12,66 @@
             <div class="body">
               <div class="row mb-3">
                 <div class="col-lg-4">
-                  <label for="nspp">NSPP</label>
+                  <label for="nama">Nama Mahasiswa</label>
                   <input type="hidden" name="id" id="id" value="<?php echo $getCode; ?>">
                   <input type="hidden" name="updater" id="updater" value="<?php echo $user['email']; ?>">
-                  <input type="text" class="form-control" id="nspp" name="nspp" placeholder="Masukkan NSPP" onfocus="true">
+                  <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Mahasiswa" onfocus="true">
                 </div>
                 <div class="col-lg-8">
-                  <label for="nama">Nama Pondok Pesantren</label>
-                  <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Pondok Pesantren">
+                  <label for="jk">Jenis Kelamin</label>
+                  <select name="jk" id="jk" class="form-control">
+                    <option value="">Pilih Jenis Kelamin</option>
+                    <option value="1">Laki-laki</option>
+                    <option value="2">Perempuan</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="wn">Kewarganegaraan</label>
+                <select name="wn" id="wn" class="form-control">
+                    <option value="">Pilih Kewarganegaraan</option>
+                    <option value="1">WNI</option>
+                    <option value="2">WNI Keturunan</option>
+                    <option value="3">WNA</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                <label for="stts">Status Sipil</label>
+                <select name="stts" id="stts" class="form-control">
+                  <option value="">Pilih Status</option>
+                  <option value="1">Menikah</option>
+                  <option value="2">Belum Menikah</option>
+                  <option value="3">Janda</option>
+                  <option value="4">Duda</option>
+                </select>
+              </div>
+              <div class="row mb-3">
+                <div class="col-lg-4">
+                  <label for="kec">Kecamatan</label>
+                  <select name="kec" id="kec" class="form-control">
+                    <option value="">Pilih Kecamatan</option>
+                    <?php foreach($dataKecamatan as $kec) : ?>
+                      <option value="<?= $kec['id_kecamatan']; ?>"><?= $kec['kec']; ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="col-lg-4">
+                  <label for="kab">Kabupaten</label>
+                  <select name="kab" id="kab" class="form-control">
+                    <option value="">Pilih Kabupaten</option>
+                    <?php foreach($dataKecamatan as $kec) : ?>
+                      <option value="<?= $kec['id_kecamatan']; ?>">its not avalaible</option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="col-lg-4">
+                  <label for="prov">Provinsi</label>
+                  <select name="prov" id="prov" class="form-control">
+                    <option value="">Pilih Provinsi</option>
+                    <?php foreach($dataKecamatan as $kec) : ?>
+                      <option value="<?= $kec['id_kecamatan']; ?>">its not available</option>
+                    <?php endforeach; ?>
+                  </select>
                 </div>
               </div>
               <div class="form-group">
@@ -28,77 +80,69 @@
               </div>
               <div class="row mb-3">
                 <div class="col-lg-6">
-                  <label for="kecamatan">Kecamatan</label>
-                  <select name="kecamatan" id="kecamatan" class="form-control">
-                    <option value="">Pilih Kecamatan</option>
-                    <?php foreach($dataKecamatan as $kecamatan) : ?>
-                      <option value="<?= $kecamatan['id_kecamatan']; ?>"><?= $kecamatan['kec']; ?></option>
+                  <label for="lat">Latitude</label>
+                  <input type="text" class="form-control" id="lat" name="lat" placeholder="Masukkan Latitude" onfocus="true">
+                </div>
+                <div class="col-lg-6">
+                  <label for="lon">Longitude</label>
+                  <input type="text" class="form-control" id="lon" name="lon" placeholder="Masukkan Longitude" onfocus="true">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-lg-6">
+                  <label for="sekolah">Asal Sekolah</label>
+                  <input type="text" class="form-control" id="sekolah" name="sekolah" placeholder="Masukkan Asal Sekolah">
+                </div>
+                <div class="col-lg-6">
+                  <label for="jurusan">Jurusan & Tahun Lulus</label>
+                  <div class="row">
+                    <div class="col-8 col-lg-6">  
+                      <select name="jurusan" id="jurusan" class="form-control">
+                        <option value="">Pilih Jurusan</option>
+                        <option value="1">IPA</option>
+                        <option value="2">IPS</option>
+                        <option value="3">Bahasa</option>
+                        <option value="4">Lainnya</option>
+                      </select>
+                    </div>
+                    <div class="col-4 col-lg-6">
+                      <input type="text" class="form-control" id="lulus" name="lulus" placeholder="Tahun Lulus">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-lg-4">
+                  <label for="prodi1">Program Studi 1</label>
+                  <select name="prodi1" id="prodi1" class="form-control">
+                    <option value="">Pilih Prodi 1</option>
+                    <?php foreach($dataKecamatan as $kec) : ?>
+                      <option value="<?= $kec['id_kecamatan']; ?>">its not available</option>
                     <?php endforeach; ?>
                   </select>
                 </div>
-
-                <div class="col-lg-6">
-                  <label for="lat">Garis Bujur & Lintang (Latitude & Longitude): <a href="http://www.latlong.net" class="tooltip-test" target="_blank">Cari koordinat</a></label>
-                  <div class="row">
-                    <div class="col-8 col-lg-6">
-                      <input type="text" class="form-control" id="lat" name="lat" placeholder="Latitude">
-                    </div>
-                    <div class="col-4 col-lg-6">
-                      <input type="text" class="form-control" id="lon" name="lon" placeholder="Longitude">
-                    </div>
-                  </div>
+                <div class="col-lg-4">
+                  <label for="prodi2">Program Studi 2</label>
+                  <select name="prodi2" id="prodi2" class="form-control">
+                    <option value="">Pilih Prodi 2</option>
+                    <?php foreach($dataKecamatan as $kec) : ?>
+                      <option value="<?= $kec['id_kecamatan']; ?>">its not avalaible</option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="col-lg-4">
+                  <label for="prodi3">Program Studi 3</label>
+                  <select name="prodi3" id="prodi3" class="form-control">
+                    <option value="">Pilih Prodi 3</option>
+                    <?php foreach($dataKecamatan as $kec) : ?>
+                      <option value="<?= $kec['id_kecamatan']; ?>">its not available</option>
+                    <?php endforeach; ?>
+                  </select>
                 </div>
               </div>
-
               <div class="form-group">
-                <label for="tanggal">Tanggal Berdiri</label>
-                <input type="text" class="form-control" id="tanggal" name="tanggal" placeholder="Tanggal Berdiri" onfocus="(this.type='date')" id="tanggal" name="tanggal">
-              </div>
-
-              <div class="form-group">
-                <label for="yayasan">Nama Yayasan</label>
-                <input type="text" class="form-control" id="yayasan" name="yayasan" placeholder="Masukkan Nama Yayasan">
-              </div>
-              <label for="program">Unit Pendidikan</label>
-              <div class="row">
-                <div class="col-sm-10">
-                  <div class="form-group">
-                    <select multiple name="program[]" id="program" class="form-control" size="5">
-                      <option value="TPQ/LPQ">TPQ/LPQ</option>
-                      <option value="Diniyah">Diniyah</option>
-                      <option value="PP. Umum">PP. Umum</option>
-                      <option value="PP. Wajar DIKDAS">PP. Wajar DIKDAS</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-lg-2">
-                  <div class="form-group">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addOptionModal" onclick="document.getElementById('nilai').value = ''">
-                      Tambah Unit
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-8 col-lg-6">
-                  <label for="jsantri">Jumlah Santri</label>
-                  <input type="text" class="form-control" id="jsantri" name="jsantri" placeholder="Masukkan Jumlah Santri">
-                </div>
-                <div class="col-4 col-lg-6">
-                  <label for="jtenaga">Jumlah Tenaga</label>
-                  <input type="text" class="form-control" id="jtenaga" name="jtenaga" placeholder="Masukkan Jumlah Tenaga">
-                </div>
-              </div>
-
-              <div class="form-group mt-3">
-                <label for="daerah">Wilayah</label>
-                <select name="daerah" id="daerah" class="form-control">
-                  <option value="">Pilih Wilayah</option>
-                  <?php foreach($dataDaerah as $daerah) : ?>
-                    <option value="<?= $daerah['id_daerah']; ?>"><?= $daerah['jenis_daerah']; ?></option>
-                  <?php endforeach; ?>
-                </select>
+                <label for="prestasi">Detail Prestasi</label>
+                <textarea type="text" class="form-control" id="prestasi" name="prestasi" placeholder="Masukkan Detail Prestasi" rows="4"></textarea>
               </div>
             </div>
             <div class="modal-footer">

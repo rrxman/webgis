@@ -2,8 +2,8 @@
       <nav>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
           <div class="container">
-            <img class="logo" src="<?= base_url();?>assets/img/logo-kemenag.png" alt="" href="<?php echo base_url('welcome'); ?>">
-            <h4 class="text ml-5 mt-1">Sistem Informasi Geografis</h4>
+            <img class="logo" src="<?= base_url();?>assets/img/unim.png" alt="" href="<?php echo base_url('welcome'); ?>">
+            <h5 class="text ml-5 mt-1">Sistem Informasi Geografis</h5>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>

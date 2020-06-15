@@ -47,9 +47,14 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="<?= base_url('user'); ?>">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profil
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="<?= base_url('welcome'); ?>">
+                  <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Ke Halaman Utama
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="<?= base_url('auth/logout'); ?>" data-toggle="modal" data-target="#logoutModal">

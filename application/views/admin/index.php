@@ -3,7 +3,7 @@
 
         	<!-- Page Heading -->
         	<h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
-        	<div class="row">
+        	<!-- <div class="row">
         		<div class="col-xl-3 col-md-6 mb-4">
         			<div class="card border-left-info shadow h-100 py-2">
         				<div class="card-body">
@@ -50,7 +50,7 @@
         			</div>
         		</div>
         	</div>
-            <div id="cluster" height="200"></div>
+            <div id="cluster" height="200"></div> -->
         </div>
         <!-- /.container-fluid -->
 
@@ -69,7 +69,7 @@
 
       ?>
 
-            <script type="text/javascript">
+      <script type="text/javascript">
         $(function () {
           $('#cluster').highcharts({
             chart: {
@@ -83,14 +83,14 @@
               }
             },
             title: {
-              text: 'Laporan Hasil Pengelompokkan',
+              text: 'Statistik Data Mahasiswa berdasarkan Daerah Asal',
               style: {
                 fontSize: '18px',
                 fontFamily: 'Verdana, sans-serif'
               }
             },
             subtitle: {
-             text: 'Clustering',
+             text: 'Angkatan 18/19 - 19/20',
              style: {
               fontSize: '15px',
               fontFamily: 'Verdana, sans-serif'

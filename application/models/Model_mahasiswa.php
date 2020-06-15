@@ -3,14 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * 
  */
-class Model_ponpes extends CI_Model
+class Model_mahasiswa extends CI_Model
 {	
-	public function getPonpes()
+	public function getMahasiswa()
 	{
-		$kueri = "SELECT `dataponpes`.*, `daerah`.`jenis_daerah`,`kecamatan`.`kec`
-				  FROM ((`dataponpes`
-				  JOIN `daerah` ON `dataponpes`.`id_daerah` = `daerah`.`id_daerah`)
-				  JOIN `kecamatan` ON `dataponpes`.`id_kecamatan` = `kecamatan`.`id_kecamatan`) ORDER BY `id_ponpes` ASC";
+		$kueri = "SELECT `mhs`.*,`kecamatan`.`kec`
+				  FROM (`mhs`
+				  JOIN `kecamatan` ON `mhs`.`kec` = `kecamatan`.`id_kecamatan`) ORDER BY `id` ASC";
     	return $this->db->query($kueri)->result_array();
 	}
 
@@ -22,7 +21,7 @@ class Model_ponpes extends CI_Model
 		return $query;
 	}
 
-	public function getPonpesById($id)
+	public function getMahasiswaById($id)
 	{
 		$query = $this->db->get_where('dataponpes', array('id_ponpes' => $id ))->row_array();
 		return $query;
@@ -40,7 +39,7 @@ class Model_ponpes extends CI_Model
 		return $this->db->query($query)->result_array();
 	}
 
-	public function editPonpesById($where, $table){
+	public function editMahasiswaById($where, $table){
 		return $this->db->get_where($table, $where);
 	}
 

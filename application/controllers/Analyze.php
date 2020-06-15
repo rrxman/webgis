@@ -6,14 +6,14 @@ class Analyze extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		is_logged_in();
-		$this->load->model('Model_ponpes', 'ponpes');
+		$this->load->model('Model_mahasiswa', 'mahasiswa');
 		$this->load->dbforge();
 	}
 
 	public function index() {
 		$data['user'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
 		$data['title'] = 'Clustering';
-		$data['alternatif'] = $this->ponpes->getAlternatif();
+		$data['alternatif'] = $this->mahasiswa->getAlternatif();
 		$data['kriteria'] = $this->db->get('kriteria')->result_array();
 
 		$this->load->view('templates/user_header', $data);
@@ -24,7 +24,7 @@ class Analyze extends CI_Controller {
 	}
 
 	public function preproccessing(){
-		$dataMentah = $this->ponpes->getDataToNorm();
+		$dataMentah = $this->mahasiswa->getDataToNorm();
 		$this->_normalisasi($dataMentah);
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Dataset berhasil diperbarui!</div>');
 		redirect('analyze','refresh');
@@ -49,7 +49,7 @@ class Analyze extends CI_Controller {
 	}
 
 	private function _cluster($C, $iteration, $w, $eps){
-		$points = $this->ponpes->getAlternate();
+		$points = $this->mahasiswa->getAlternate();
 		$centers = [];
 		$jumlahKlaster = $C;
 		$maxIter = $iteration;
@@ -60,7 +60,7 @@ class Analyze extends CI_Controller {
 		$no = 1;
 		$no2 = 1;
 		$idPonpes = [];
-		$idData = $this->ponpes->getId();
+		$idData = $this->mahasiswa->getId();
 		foreach ($idData as $id) {
 			$hasil = array(
 				'id_ponpes' => $id
@@ -92,7 +92,7 @@ class Analyze extends CI_Controller {
 
 
 		$this->_cluster($jumlahKlaster, $maxIter, $fuzzy, $epsilon);
-		$maxCluster = $this->ponpes->cluster();
+		$maxCluster = $this->mahasiswa->cluster();
 		$this->db->empty_table('max_cluster');
 		$no = 1;
 		$cluster = [];
@@ -106,7 +106,7 @@ class Analyze extends CI_Controller {
 		$this->db->insert_batch('max_cluster', $cluster);
 
 
-		$data['hasil'] = $this->ponpes->finalDataCluster();
+		$data['hasil'] = $this->mahasiswa->finalDataCluster();
 		$data['iterasi'] = $GLOBALS['iterations'];
 		$data['fungsiObyektif'] = $GLOBALS['decisions'];
 		$data['cluster'] = $jumlahKlaster;
@@ -122,7 +122,7 @@ class Analyze extends CI_Controller {
 		$data['user'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
 		$data['title'] = 'Clustering';
 
-		$data['hasil'] = $this->ponpes->joinHasilPonpes();
+		$data['hasil'] = $this->mahasiswa->joinHasilPonpes();
 		$data['cluster'] = 3;
 		$this->load->view('templates/user_header', $data);
 		$this->load->view('templates/user_sidebar', $data);
@@ -134,7 +134,7 @@ class Analyze extends CI_Controller {
 	public function print(){
 		$data['user'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
 
-		$data['hasil'] = $this->ponpes->joinHasilPonpes();
+		$data['hasil'] = $this->mahasiswa->joinHasilPonpes();
 		$data['cluster'] = 3;
 
 		$this->load->view('analyze/cetak', $data);
@@ -145,7 +145,7 @@ class Analyze extends CI_Controller {
 		$data['user'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
 		$data['title'] = 'Detail';
 
-		$user = $this->ponpes->getPonpesByIdHasil($id);
+		$user = $this->mahasiswa->getPonpesByIdHasil($id);
 		$data['company'] = $user;
 
 		$this->load->view('templates/user_header', $data);

@@ -6,7 +6,7 @@ class User extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		is_logged_in();
-		$this->load->model('Model_ponpes');
+		$this->load->model('Model_mahasiswa');
 	}
 
 	public function index() {
@@ -167,12 +167,12 @@ class User extends CI_Controller {
 				$this->db->insert('ponpes_unit', $add_unit);
 			}
 		} else {
-			$this->Model_ponpes->update($where, $data, 'dataponpes');
+			$this->Model_mahasiswa->update($where, $data, 'dataponpes');
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data telah di ubah!</div>');
 			redirect('user/change_company','refresh');
 		}
 
-		$this->Model_ponpes->update($where, $data, 'dataponpes');
+		$this->Model_mahasiswa->update($where, $data, 'dataponpes');
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data telah di ubah!</div>');
 		redirect('user/change_company','refresh');
 	}

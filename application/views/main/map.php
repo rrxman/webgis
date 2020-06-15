@@ -5,7 +5,7 @@
               <th>Alamat</th>
               <td id="alamat"></td>
             </tr>
-            <tr>
+            <!-- <tr>
               <th>Tanggal Berdiri</th>
               <td id="tgl"></td>
             </tr>
@@ -16,7 +16,7 @@
             <tr>
               <th>Jumlah Tenaga</th>
               <td id="jtenaga"></td>
-            </tr>
+            </tr> -->
         </table>
 </div>
 <div id="mapid" class="sidebar-map"></div>

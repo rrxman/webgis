@@ -1,7 +1,7 @@
 <!-- Footer -->
 <footer class="Footer warna">
     <div class="text-center">
-      <p>2019 All Right Reserved by Gilang Permadi</p>
+      <p><?= date('Y'); ?> All Right Reserved by Rohman UNIM</p>
   </div>
 </footer>
 <!-- End Footer -->
@@ -67,7 +67,7 @@
 
     function optionIconAll (feature, latlng){
         let allIcon = L.icon({
-            iconUrl: baseUrl+'assets/img/test-marker.png',
+            iconUrl: baseUrl+'assets/img/home.png',
             iconSize:     [30, 30] // size of the icon
         })
         return L.marker(latlng, {icon: allIcon})
@@ -242,15 +242,15 @@
         "Tampil": {
             "Semua": allFeature
         },
-        "Wilayah": {
-            "Kabupaten": kabupatenFeature,
-            "Kota": kotaFeature
-        },
-        "Kelompok": {
-            "Besar": c1Feature,
-            "Menengah": c2Feature,
-            "Kecil": c3Feature
-        }
+        // "Wilayah": {
+        //     "Kabupaten": kabupatenFeature,
+        //     "Kota": kotaFeature
+        // },
+        // "Kelompok": {
+        //     "Besar": c1Feature,
+        //     "Menengah": c2Feature,
+        //     "Kecil": c3Feature
+        // }
     };
 
     L.control.groupedLayers(baseMaps, overlays).addTo(mymap);

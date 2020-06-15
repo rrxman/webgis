@@ -7,12 +7,12 @@ class Model_autonumber extends CI_Model {
 		parent::__construct();
 	}
 	
-	public function kodePonpes()
+	public function kodeMahasiswa()
 	{
-		$this->db->select('RIGHT(dataponpes.id_ponpes, 4) as kode', FALSE);
-		$this->db->order_by('id_ponpes', 'DESC');
+		$this->db->select('RIGHT(mhs.id, 4) as kode', FALSE);
+		$this->db->order_by('id', 'DESC');
 		$this->db->limit(1);
-		$query = $this->db->get('dataponpes');
+		$query = $this->db->get('mhs');
 		if($query->num_rows() <> 0){
 			$data = $query->row();
 			$kode = intval($data->kode) + 1;
@@ -21,7 +21,7 @@ class Model_autonumber extends CI_Model {
 		}
 
 		$kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT);
-		$createKode = "P".$kodemax;
+		$createKode = "M".$kodemax;
 		return $createKode;
 	}
 

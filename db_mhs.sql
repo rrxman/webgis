@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 14, 2020 at 04:07 AM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.10
+-- Host: localhost
+-- Generation Time: Jun 15, 2020 at 12:25 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -112,18 +112,8 @@ CREATE TABLE `dataponpes` (
 --
 
 INSERT INTO `dataponpes` (`id_ponpes`, `nspp`, `nama_ponpes`, `alamat`, `id_kecamatan`, `tgl_berdiri`, `yayasan`, `id_daerah`, `jumlah_santri`, `jumlah_tenaga`, `jumlah_unit`, `lat`, `lon`, `pengupdate`, `tgl_update`) VALUES
-('P0001', '510335160001', 'AL-HAMID BANGON ', 'Dusun Bangon Rt. 006 Rw.002, Bleberan, Jatirejo ', 6, '1951-03-24', 'Yayasan Pondok Pesantren Al-Hamid Bangon', 1, 71, 19, 5, -7.618203, 112.442069, 'already@gmail.com', 1565362115),
-('P0002', '510035160002', 'BIDAYATUL HIDAYAH', 'Jl. Kh. Yahdi, Dsn. Mojogeneng, Mojogeneng, Jatirejo', 6, '1940-12-31', '', 1, 1000, 58, 13, -7.581419, 112.442123, 'already@gmail.com', 1565362124),
-('P0003', '510035160003', 'ISMUL HAQ', 'Dusun Kowang, Gebangsari, Jatirejo', 6, '2001-12-31', 'Yayasan Ismul Haq', 1, 120, 23, 5, -7.589899, 112.424518, 'gilangpermadi66@gmail.com', 1565399757),
-('P0004', '510035160004', 'KUN \'ALIMAN', 'Dusun Mojogeneng, Mojogeneng, Jatirejo', 6, '2008-12-31', '', 1, 224, 26, 5, -7.582192, 112.442268, 'already@gmail.com', 1565362164),
-('P0007', '510035160009', 'MIFTAHUL QULUB', 'Jl. A. Yani Dusun Tawar, Tawar, Gondang', 5, '1963-12-31', '', 1, 75, 23, 9, -7.602575, 112.455279, 'already@gmail.com', 1565339828),
-('P0008', '510035160010', 'AL FALAH', 'Jl. Jend. A. Yani, Pacet, Pacet', 13, '1992-07-02', 'Yayasan Nurul Falah Mojokerto', 1, 83, 21, 4, -7.667112, 112.541104, 'already@gmail.com', 1565340070),
-('P0009', '510035160011', 'AL ISTIQOMAH II', 'Jl. raya jubel km 04 merak, bendunganjati, pacet', 13, '1998-04-14', 'Yayasan Pendidikan Dan Sosial Al Istiqomah II', 1, 264, 10, 6, -7.635485, 112.54548, 'already@gmail.com', 1565361693),
-('P0010', '510335160015', 'FATCHUL ULUM', 'Jl. Moch. Sholeh 270, Pacet, Pacet', 13, '1990-08-17', 'Yayasan Saraswati Mojokerto', 1, 514, 34, 5, -7.666422, 112.540434, 'already@gmail.com', 1565573147),
-('P0011', '510035160052', 'INDUK MAMBA\'UL ULUM', 'Jl. Raya Mojosari Pacet	Awang-Awang, Mojosari', 11, '1958-06-17', 'Yayasan Mamba\'ul Ulum Mojokerto', 1, 217, 37, 6, -7.533938, 112.55336, 'already@gmail.com', 1565656979),
-('P0012', '510035160053', 'MAMBA\'UL ULUM', 'Jl. A. Yani, Awang-Awang, Mojosari', 11, '1958-06-17', 'Yayasan Madrasah Salafiyah Mamba\'ul Ulum Mojokerto', 1, 1096, 55, 6, -7.532775, 112.553248, 'already@gmail.com', 1565657131),
-('P0013', '51003512187', 'Pondok Pesantren Al Azhar', 'Magersari, Kota Mojokerto', 15, '1988-10-23', '', 2, 76, 30, 4, -7.468262, 112.433739, 'already@gmail.com', 1565744958),
-('P0014', '928342984', 'ha yo iku', 'asudahlah pokoe', 16, '1998-04-23', '', 1, 12, 23, 0, -7.1695769, 113.0201912, 'already@gmail.com', 1592030554);
+('P0001', '510335160001', 'Ainur Rohman', 'Dusun Bangon Rt. 006 Rw.002, Bleberan, Jatirejo ', 6, '1951-03-24', 'Yayasan Pondok Pesantren Al-Hamid Bangon', 1, 71, 19, 5, -7.618203, 112.442069, 'already@gmail.com', 1565362115),
+('P0002', '510035160002', 'Rizky Maulana', 'Jl. Kh. Yahdi, Dsn. Mojogeneng, Mojogeneng, Jatirejo', 6, '1940-12-31', '', 1, 1000, 58, 13, -7.581419, 112.442123, 'already@gmail.com', 1565362124);
 
 -- --------------------------------------------------------
 
@@ -217,17 +207,6 @@ INSERT INTO `kecamatan` (`id_kecamatan`, `kec`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kota`
---
-
-CREATE TABLE `kota` (
-  `id` varchar(5) DEFAULT NULL,
-  `kot` varchar(25) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `kriteria`
 --
 
@@ -286,16 +265,28 @@ CREATE TABLE `mhs` (
   `jk` varchar(2) DEFAULT NULL,
   `kewarganegaraan` varchar(5) DEFAULT NULL,
   `stts_sipil` varchar(20) DEFAULT NULL,
+  `kec` varchar(25) NOT NULL,
+  `kab/kot` varchar(25) NOT NULL,
+  `prov` varchar(25) NOT NULL,
   `alamat` varchar(128) DEFAULT NULL,
+  `lat` varchar(16) NOT NULL,
+  `lon` varchar(16) NOT NULL,
   `asal_sekolah` varchar(50) DEFAULT NULL,
   `jurusan` varchar(25) DEFAULT NULL,
   `thn_lulus` int(4) DEFAULT NULL,
   `prodi1` varchar(25) DEFAULT NULL,
   `prodi2` varchar(25) DEFAULT NULL,
   `prodi3` varchar(25) DEFAULT NULL,
-  `dtail_pres` varchar(128) DEFAULT NULL,
-  `pilihan_kls` varchar(5) DEFAULT NULL
+  `dtail_pres` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `mhs`
+--
+
+INSERT INTO `mhs` (`id`, `nama`, `jk`, `kewarganegaraan`, `stts_sipil`, `kec`, `kab/kot`, `prov`, `alamat`, `lat`, `lon`, `asal_sekolah`, `jurusan`, `thn_lulus`, `prodi1`, `prodi2`, `prodi3`, `dtail_pres`) VALUES
+('M0001', 'Ainur Rohman', '1', '1', '2', '16', '2', '2', 'Sooko', '-7.508389', '112.411162', 'Ma Jombang', '4', 2015, '2', '5', '7', 'Tidak Ada'),
+('M0002', 'Cak man', '1', '2', '2', '2', '3', '5', 'Dawarblandong', '-7.345916', '112.417517', 'SMA Dawarblandong', '1', 2016, '4', '6', '1', 'Tidak Ada');
 
 -- --------------------------------------------------------
 
@@ -432,13 +423,26 @@ INSERT INTO `program_pendidikan` (`id_program`, `nama_program`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `provinsi`
+--
+
+CREATE TABLE `provinsi` (
+  `id` varchar(5) NOT NULL,
+  `prov` varchar(25) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sklh`
 --
 
 CREATE TABLE `sklh` (
   `id` varchar(15) NOT NULL,
   `nama_sklh` varchar(128) DEFAULT NULL,
-  `alamat` varchar(128) DEFAULT NULL
+  `alamat` varchar(128) DEFAULT NULL,
+  `lat` varchar(16) NOT NULL,
+  `lon` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -461,7 +465,6 @@ INSERT INTO `tb_access` (`id`, `role_id`, `menu_id`) VALUES
 (1, 1, 1),
 (19, 1, 3),
 (20, 1, 4),
-(21, 1, 5),
 (22, 2, 3),
 (23, 2, 2);
 
@@ -512,7 +515,7 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id`, `nama`, `email`, `gambar`, `password`, `role_id`, `nspp`, `nip`, `almt`, `tgl_lhr`, `telp`, `is_active`, `status`, `tgl_buat`) VALUES
-(1, 'Gilang Permadi', 'already@gmail.com', 'default1.jpg', '$2y$10$XfT.NN86V2fVtX9iZJm3ceqoO5tdGGHQDgzUj9fWr2zEj19iw53rK', 1, '', '', '', '2019-04-05', 0, 1, 1, 1557215287),
+(1, 'RXXMAN', 'already@gmail.com', 'default1.jpg', '$2y$10$XfT.NN86V2fVtX9iZJm3ceqoO5tdGGHQDgzUj9fWr2zEj19iw53rK', 1, '', '', '', '2019-04-05', 0, 1, 1, 1557215287),
 (2, 'Gilang Permadi', 'gilangpermadi66@gmail.com', 'default.jpg', '$2y$10$LC7TrlHjIHCQvMUDgLzqw.wXU12f9qtuKsYuys8m.BGnCOz2ykIWe', 2, '510035160003', '0', 'Pacet', '2001-11-25', 815492482, 0, 0, 1566432670),
 (3, 'Ainur Rohman', 'rohman.rrxman@gmail.com', 'default.jpg', '$2y$10$OAAOQuS71hkdEC44gKmJb.C5WWt/H5u0nhW3VkUNCZYgb7poM1hRG', 2, '928342984', '1234', 'Jombang', '2020-06-13', 8574544, 1, 1, 1592032119);
 
@@ -537,7 +540,6 @@ INSERT INTO `tb_usermenu` (`id`, `menu`, `alias`) VALUES
 (2, 'Lembaga', 'Profile'),
 (3, 'Pengguna', 'User'),
 (4, 'SIG', 'Map'),
-(5, 'Analisa Data', 'Analyze'),
 (6, 'Menu', 'Menu');
 
 -- --------------------------------------------------------
@@ -565,11 +567,9 @@ INSERT INTO `tb_usersubmenu` (`id`, `id_menu`, `judul`, `url`, `icon`, `aktif`) 
 (3, 3, 'Ubah Profil', 'user/edit', 'fas fa-fw fa-user-edit', 1),
 (4, 6, 'Kelola Menu', 'menu', 'fas fa-fw fa-folder-plus', 1),
 (5, 6, 'Kelola Sub-Menu', 'menu/submenu', 'fas fa-fw fa-folder-open', 1),
-(6, 1, 'Kelola Operator', 'admin/user', 'fas fa-fw fa-user-tie', 1),
-(7, 5, 'Clustering', 'analyze', 'fas fa-fw fa-superscript', 1),
 (8, 4, 'Peta', 'gis', 'fas fa-fw fa-globe', 1),
 (9, 3, 'Ganti Kata Sandi', 'user/changepassword', 'fas fa-fw fa-key', 1),
-(10, 1, 'Data Pondok Pesantren', 'admin/dataPonpes', 'fas fa-fw fa-database', 1),
+(10, 1, 'Data Mahasiswa', 'admin/dataMahasiswa', 'fas fa-fw fa-database', 1),
 (11, 2, 'Profil Lembaga', 'user/profile_company', 'fas fa-fw fa-building', 1),
 (12, 2, 'Edit Pondok Pesantren', 'user/change_company', 'fas fa-fw fa-edit', 1);
 
@@ -663,6 +663,12 @@ ALTER TABLE `ponpes_unit`
 --
 ALTER TABLE `program_pendidikan`
   ADD PRIMARY KEY (`id_program`);
+
+--
+-- Indexes for table `provinsi`
+--
+ALTER TABLE `provinsi`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `sklh`
@@ -759,7 +765,7 @@ ALTER TABLE `program_pendidikan`
 -- AUTO_INCREMENT for table `tb_access`
 --
 ALTER TABLE `tb_access`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `tb_role`

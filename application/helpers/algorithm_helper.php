@@ -1,6 +1,6 @@
 <?php 
 $ci = get_instance();
-$ci->load->model('Model_ponpes', 'ponpes');
+$ci->load->model('Model_mahasiswa', 'mahasiswa');
 // Random values 0 - 1
 function random_float ($min,$max) {
     return ($min+lcg_value()*(abs($max-$min)));

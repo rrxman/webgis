@@ -7,7 +7,7 @@ class Admin extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		is_logged_in();
-		$this->load->model('Model_ponpes');
+		$this->load->model('Model_mahasiswa');
 		$this->load->model('Model_autonumber');
 		$this->load->model('Model_excel');
 	}
@@ -16,10 +16,10 @@ class Admin extends CI_Controller {
 		$data['user'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
 		$data['title'] = 'Dashboard';
 
-		$data['totalUser'] = $this->Model_ponpes->totalOperator();
-		$data['totalData'] = $this->db->count_all_results('dataponpes');
+		$data['totalUser'] = $this->Model_mahasiswa->totalOperator();
+		$data['totalData'] = $this->db->count_all_results('mhs');
 		$data['totalAnalyze'] = $this->db->count_all_results('hasil');
-		$data['chartHasil'] = $this->Model_ponpes->chart();
+		$data['chartHasil'] = $this->Model_mahasiswa->chart();
 
 		$this->load->view('templates/user_header', $data);
 		$this->load->view('templates/user_sidebar', $data);
@@ -73,15 +73,15 @@ class Admin extends CI_Controller {
 		$this->session->set_flashdata('message', '<div class="alert alert-success role="alert>Akses telah diubah!</div>');
 	}
 
-	public function dataPonpes() {
+	public function dataMahasiswa() {
 		$data['user'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
-		$data['title'] = 'Data Pondok Pesantren';
-		$data['dataPonpes'] = $this->Model_ponpes->getPonpes();
+		$data['title'] = 'Data Mahasiswa';
+		$data['dataMahasiswa'] = $this->Model_mahasiswa->getMahasiswa();
 		
 		$this->load->view('templates/user_header', $data);
 		$this->load->view('templates/user_sidebar', $data);
 		$this->load->view('templates/user_topbar', $data);
-		$this->load->view('admin/dataPonpes', $data);
+		$this->load->view('admin/dataMahasiswa', $data);
 		$this->load->view('templates/user_footer');
 
 	}
@@ -91,7 +91,7 @@ class Admin extends CI_Controller {
 		$data['user'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
 		$data['title'] = 'Info Lengkap';
 
-		$detail = $this->Model_ponpes->getPonpesById($id);
+		$detail = $this->Model_mahasiswa->getMahasiswaById($id);
 		$data['detail'] = $detail;
 
 		$this->load->view('templates/user_header', $data);
@@ -108,25 +108,16 @@ class Admin extends CI_Controller {
 		$data['dataProgram'] = $this->db->get('program_pendidikan')->result_array();
 		$data['dataDaerah'] = $this->db->get('daerah')->result_array();
 
-		$data['getCode'] = $this->Model_autonumber->kodePonpes();
+		$data['getCode'] = $this->Model_autonumber->kodeMahasiswa();
 
-		$this->form_validation->set_rules('nspp', 'NSPP', 'required|trim|numeric|is_unique[dataponpes.nspp]', [
-			'is_unique' => 'Nomor Statistik sudah ada',
-			'required' => 'Nomor Statistik wajib diisi'
+		$this->form_validation->set_rules('nama', 'Nama', 'required|trim', [
+			'required' => 'Nama Mahasiswa wajib diisi'
 		]);
 		$this->form_validation->set_rules('lat', 'Latitude', 'required|trim|numeric', [
 			'numeric' => 'Latitude salah. Inputan mengandung karakter atau huruf'
 		]);
 		$this->form_validation->set_rules('lon', 'Longitude', 'required|trim|numeric', [
 			'numeric' => 'Longitude salah. Inputan mengandung karakter atau huruf'
-		]);
-		$this->form_validation->set_rules('jsantri', 'Jumlah Santri', 'required|trim|numeric', [
-			'numeric' => 'Jumlah Santri salah. Inputan mengandung karakter atau huruf',
-			'required' => 'Jumlah Santri wajib diisi'
-		]);
-		$this->form_validation->set_rules('jtenaga', 'Jumlah Tenaga', 'required|trim|numeric', [
-			'numeric' => 'Jumlah Tenaga salah. Inputan mengandung karakter atau huruf',
-			'required' => 'Jumlah Tenaga wajib diisi'
 		]);
 
 		if($this->form_validation->run() == false) {
@@ -136,44 +127,38 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/add', $data);
 			$this->load->view('templates/user_footer');
 		} else {
-			$data_unit = $this->input->post('program');
 			$data =[
-				'id_ponpes' => $this->input->post('id'),
-				'nspp' => $this->input->post('nspp'),
-				'nama_ponpes' => $this->input->post('nama'),
+				'id' => $this->input->post('id'),
+				'nama' => $this->input->post('nama'),
+				'jk' => $this->input->post('jk'),
+				'kewarganegaraan' => $this->input->post('wn'),
+				'stts_sipil' => $this->input->post('stts'),
+				'kec' => $this->input->post('kec'),
+				'kab/kot' => $this->input->post('kab'),
+				'prov' => $this->input->post('prov'),
 				'alamat' => $this->input->post('alamat'),
-				'id_kecamatan' => $this->input->post('kecamatan'),
-				'tgl_berdiri' => $this->input->post('tanggal'),
-				'yayasan' => $this->input->post('yayasan'),
-				'id_daerah' => $this->input->post('daerah'),
-				'jumlah_santri' => $this->input->post('jsantri'),
-				'jumlah_tenaga' => $this->input->post('jtenaga'),
-				'jumlah_unit' => sizeof($data_unit),
 				'lat' => $this->input->post('lat'),
 				'lon' => $this->input->post('lon'),
-				'pengupdate' => $this->input->post('updater'),
-				'tgl_update' => time()
+				'asal_sekolah' => $this->input->post('sekolah'),
+				'jurusan' => $this->input->post('jurusan'),
+				'thn_lulus' => $this->input->post('lulus'),
+				'prodi1' => $this->input->post('prodi1'),
+				'prodi2' => $this->input->post('prodi2'),
+				'prodi3' => $this->input->post('prodi3'),
+				'dtail_pres' => $this->input->post('prestasi'),
 			];
-
-			foreach ($data_unit as $unit) {
-				$add_unit = array(
-					'id_ponpes' => $this->input->post('id'),
-					'nama_unit' => $unit
-				);
-				$this->db->insert('ponpes_unit', $add_unit);
-			}
-			$this->db->insert('dataponpes', $data);
+			$this->db->insert('mhs', $data);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil ditambahkan!</div>');
-			redirect('admin/dataponpes');
+			redirect('admin/dataMahasiswa');
 		}
 	}
 
 	public function edit_data($id){
 		$data['user'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
 		$data['title'] = 'Ubah Data';
-		$where = array('id_ponpes' => $id);
+		$where = array('id' => $id);
 
-		$data['pontren'] = $this->Model_ponpes->editPonpesById($where, 'dataponpes')->row_array();
+		$data['pontren'] = $this->Model_mahasiswa->editMahasiswaById($where, 'mhs')->row_array();
 		$data['dataKecamatan'] = $this->db->get('kecamatan')->result_array();
 		$data['dataDaerah'] = $this->db->get('daerah')->result_array();
 		$data['ponpes_unit'] = $this->db->get_where('ponpes_unit', ['id_ponpes' => $id])->result_array();
@@ -220,30 +205,30 @@ class Admin extends CI_Controller {
 				$this->db->insert('ponpes_unit', $add_unit);
 			}
 		} else {
-			$this->Model_ponpes->update($where, $data, 'dataponpes');
+			$this->Model_mahasiswa->update($where, $data, 'dataponpes');
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data telah di ubah!</div>');
 			redirect('admin/dataponpes','refresh');
 		}
 		
 
-		$this->Model_ponpes->update($where, $data, 'dataponpes');
+		$this->Model_mahasiswa->update($where, $data, 'dataponpes');
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data telah di ubah!</div>');
-		redirect('admin/dataponpes','refresh');
+		redirect('admin/datamahasiswa','refresh');
 	}
 
 	public function hapus($id){
-		$where = ['id_ponpes' => $id];
-		$this->Model_ponpes->hapus_data($where, 'dataponpes');
+		$where = ['id' => $id];
+		$this->Model_mahasiswa->hapus_data($where, 'mhs');
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data telah di hapus!</div>');
-		redirect('admin/dataponpes');
+		redirect('admin/datamahasiswa');
 	}
 
 	public function user(){
 		$data['user'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
 		$data['title'] = 'Kelola Operator';
-		$data['manageUser'] = $this->ponpes->user();
-		$data['sttsApproved'] = $this->ponpes->approved();
-		$data['sttsPending'] = $this->ponpes->pending();
+		$data['manageUser'] = $this->Model_mahasiswa-->user();
+		$data['sttsApproved'] = $this->Model_mahasiswa-->approved();
+		$data['sttsPending'] = $this->Model_mahasiswa-->pending();
 		
 		$this->load->view('templates/user_header', $data);
 		$this->load->view('templates/user_sidebar', $data);
@@ -281,7 +266,7 @@ class Admin extends CI_Controller {
 		$data['user'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
 		$data['title'] = 'Pratinjau';
 
-		$user = $this->Model_ponpes->getUserById($id);
+		$user = $this->Model_mahasiswa->getUserById($id);
 		$data['user'] = $user;
 
 		$this->load->view('templates/user_header', $data);
@@ -296,7 +281,7 @@ class Admin extends CI_Controller {
 		$data['user'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
 		$data['title'] = 'Detail';
 
-		$user = $this->Model_ponpes->getUserById($id);
+		$user = $this->Model_mahasiswa->getUserById($id);
 		$data['user'] = $user;
 
 		$this->load->view('templates/user_header', $data);
