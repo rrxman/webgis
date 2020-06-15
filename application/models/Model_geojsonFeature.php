@@ -2,6 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Model_geojsonFeature extends CI_Model {
+	
+	public function getSekolah(){
+		$query = "SELECT `mhs`.`id`, `mhs`.`nama`, `mhs`.`alamat`, `sklh`.`nama_sklh`,`sklh`.`lat`,`sklh`.`lon`
+					FROM (`mhs`
+					JOIN `sklh` ON `mhs`.`asal_sekolah` = `sklh`.`id`) ORDER BY `id` ASC";
+		return $this->db->query($query)->result_array();
+	}
+
 	public function getWilayahKab(){
 		$query = "SELECT * FROM `dataponpes`
 					WHERE `id_daerah` = 1";

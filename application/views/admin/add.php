@@ -59,17 +59,17 @@
                   <label for="kab">Kabupaten</label>
                   <select name="kab" id="kab" class="form-control">
                     <option value="">Pilih Kabupaten</option>
-                    <?php foreach($dataKecamatan as $kec) : ?>
-                      <option value="<?= $kec['id_kecamatan']; ?>">its not avalaible</option>
+                    <?php foreach($dataKabupaten as $kab) : ?>
+                      <option value="<?= $kab['id']; ?>"><?= $kab['kab']; ?></option>
                     <?php endforeach; ?>
                   </select>
                 </div>
                 <div class="col-lg-4">
-                  <label for="prov">Provinsi</label>
+                  <label for="sklh">Provinsi</label>
                   <select name="prov" id="prov" class="form-control">
                     <option value="">Pilih Provinsi</option>
-                    <?php foreach($dataKecamatan as $kec) : ?>
-                      <option value="<?= $kec['id_kecamatan']; ?>">its not available</option>
+                    <?php foreach($dataProvinsi as $prov) : ?>
+                      <option value="<?= $prov['id']; ?>"><?= $prov['prov']; ?></option>
                     <?php endforeach; ?>
                   </select>
                 </div>
@@ -91,7 +91,13 @@
               <div class="row mb-3">
                 <div class="col-lg-6">
                   <label for="sekolah">Asal Sekolah</label>
-                  <input type="text" class="form-control" id="sekolah" name="sekolah" placeholder="Masukkan Asal Sekolah">
+                  <!-- <input type="text" class="form-control" id="sekolah" name="sekolah" placeholder="Masukkan Asal Sekolah"> -->
+                  <select name="sklh" id="sklh" class="form-control">
+                    <option value="">Pilih Sekolah</option>
+                    <?php foreach($dataSekolah as $sklh) : ?>
+                      <option value="<?= $sklh['id']; ?>"><?= $sklh['nama_sklh']; ?></option>
+                    <?php endforeach; ?>
+                  </select>
                 </div>
                 <div class="col-lg-6">
                   <label for="jurusan">Jurusan & Tahun Lulus</label>
@@ -116,8 +122,8 @@
                   <label for="prodi1">Program Studi 1</label>
                   <select name="prodi1" id="prodi1" class="form-control">
                     <option value="">Pilih Prodi 1</option>
-                    <?php foreach($dataKecamatan as $kec) : ?>
-                      <option value="<?= $kec['id_kecamatan']; ?>">its not available</option>
+                    <?php foreach($dataProdi as $prodi) : ?>
+                      <option value="<?= $prodi['id']; ?>"><?= $prodi['prodi']; ?></option>
                     <?php endforeach; ?>
                   </select>
                 </div>
@@ -125,8 +131,8 @@
                   <label for="prodi2">Program Studi 2</label>
                   <select name="prodi2" id="prodi2" class="form-control">
                     <option value="">Pilih Prodi 2</option>
-                    <?php foreach($dataKecamatan as $kec) : ?>
-                      <option value="<?= $kec['id_kecamatan']; ?>">its not avalaible</option>
+                    <?php foreach($dataProdi as $prodi) : ?>
+                      <option value="<?= $prodi['id']; ?>"><?= $prodi['prodi']; ?></option>
                     <?php endforeach; ?>
                   </select>
                 </div>
@@ -134,8 +140,8 @@
                   <label for="prodi3">Program Studi 3</label>
                   <select name="prodi3" id="prodi3" class="form-control">
                     <option value="">Pilih Prodi 3</option>
-                    <?php foreach($dataKecamatan as $kec) : ?>
-                      <option value="<?= $kec['id_kecamatan']; ?>">its not available</option>
+                    <?php foreach($dataProdi as $prodi) : ?>
+                      <option value="<?= $prodi['id']; ?>"><?= $prodi['prodi']; ?></option>
                     <?php endforeach; ?>
                   </select>
                 </div>

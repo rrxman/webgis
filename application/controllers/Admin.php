@@ -105,8 +105,10 @@ class Admin extends CI_Controller {
 		$data['user'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
 		$data['title'] = 'Tambah Data';
 		$data['dataKecamatan'] = $this->db->get('kecamatan')->result_array();
-		$data['dataProgram'] = $this->db->get('program_pendidikan')->result_array();
-		$data['dataDaerah'] = $this->db->get('daerah')->result_array();
+		$data['dataKabupaten'] = $this->db->get('kabupaten')->result_array();
+		$data['dataProvinsi'] = $this->db->get('provinsi')->result_array();
+		$data['dataSekolah'] = $this->db->get('sklh')->result_array();
+		$data['dataProdi'] = $this->db->get('prodi')->result_array();
 
 		$data['getCode'] = $this->Model_autonumber->kodeMahasiswa();
 
@@ -139,7 +141,7 @@ class Admin extends CI_Controller {
 				'alamat' => $this->input->post('alamat'),
 				'lat' => $this->input->post('lat'),
 				'lon' => $this->input->post('lon'),
-				'asal_sekolah' => $this->input->post('sekolah'),
+				'asal_sekolah' => $this->input->post('sklh'),
 				'jurusan' => $this->input->post('jurusan'),
 				'thn_lulus' => $this->input->post('lulus'),
 				'prodi1' => $this->input->post('prodi1'),
@@ -160,8 +162,10 @@ class Admin extends CI_Controller {
 
 		$data['pontren'] = $this->Model_mahasiswa->editMahasiswaById($where, 'mhs')->row_array();
 		$data['dataKecamatan'] = $this->db->get('kecamatan')->result_array();
-		$data['dataDaerah'] = $this->db->get('daerah')->result_array();
-		$data['ponpes_unit'] = $this->db->get_where('ponpes_unit', ['id_ponpes' => $id])->result_array();
+		$data['dataKabupaten'] = $this->db->get('kabupaten')->result_array();
+		$data['dataProvinsi'] = $this->db->get('provinsi')->result_array();
+		$data['dataSekolah'] = $this->db->get('sklh')->result_array();
+		$data['dataProdi'] = $this->db->get('prodi')->result_array();
 		$this->load->view('templates/user_header', $data);
 		$this->load->view('templates/user_sidebar', $data);
 		$this->load->view('templates/user_topbar', $data);

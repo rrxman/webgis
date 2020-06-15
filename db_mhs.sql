@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 15, 2020 at 12:25 PM
+-- Generation Time: Jun 15, 2020 at 06:10 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.27
 
@@ -155,8 +155,27 @@ INSERT INTO `hasil` (`id_hasil`, `id_ponpes`, `c1`, `c2`, `c3`, `id_cluster`) VA
 
 CREATE TABLE `jurus` (
   `id` varchar(5) DEFAULT NULL,
-  `jurusan` varchar(25) DEFAULT NULL
+  `jurusan` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `jurus`
+--
+
+INSERT INTO `jurus` (`id`, `jurusan`) VALUES
+('1', 'Manajemen'),
+('2', 'Akuntansi'),
+('3', 'Ilmu Komunikasi'),
+('4', 'Ilmu Pemerintah'),
+('5', 'Pendidikan Agama Islam'),
+('6', 'Pendidikan Bahasa Indonesia'),
+('7', 'Pendidikan Bahasa Inggris'),
+('8', 'Pendidikan Matematika'),
+('9', 'Teknik Mesin'),
+('10', 'Teknik Sipil'),
+('11', 'Teknik Industri'),
+('12', 'Teknik Informatika'),
+('13', 'Teknologi Hasil Pertanian');
 
 -- --------------------------------------------------------
 
@@ -168,6 +187,17 @@ CREATE TABLE `kabupaten` (
   `id` varchar(5) DEFAULT NULL,
   `kab` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kabupaten`
+--
+
+INSERT INTO `kabupaten` (`id`, `kab`) VALUES
+('1', 'Mojokerto'),
+('2', 'Jombang'),
+('3', 'Sidoarjo'),
+('4', 'Malang'),
+('5', 'Surabaya');
 
 -- --------------------------------------------------------
 
@@ -285,8 +315,10 @@ CREATE TABLE `mhs` (
 --
 
 INSERT INTO `mhs` (`id`, `nama`, `jk`, `kewarganegaraan`, `stts_sipil`, `kec`, `kab/kot`, `prov`, `alamat`, `lat`, `lon`, `asal_sekolah`, `jurusan`, `thn_lulus`, `prodi1`, `prodi2`, `prodi3`, `dtail_pres`) VALUES
-('M0001', 'Ainur Rohman', '1', '1', '2', '16', '2', '2', 'Sooko', '-7.508389', '112.411162', 'Ma Jombang', '4', 2015, '2', '5', '7', 'Tidak Ada'),
-('M0002', 'Cak man', '1', '2', '2', '2', '3', '5', 'Dawarblandong', '-7.345916', '112.417517', 'SMA Dawarblandong', '1', 2016, '4', '6', '1', 'Tidak Ada');
+('M0001', 'ABDULLAH KHASIB AGUS JAUHARI', '1', '1', '2', '15', '1', '1', 'DUSUN KENANTEN RT. 003 RW. 002 Kel. KENANTEN', '-7.497093', '112.445048', '1', '1', 2014, '12', '10', '7', '-'),
+('M0002', 'DANY SUWARNO', '1', '1', '2', '16', '1', '1', 'Dsn. Kedawung Ds. Gemekan Kec. Sooko', '-7.526350', '112.405222', '2', '2', 2016, '12', '7', '2', '-'),
+('M0003', 'SYAM ABDUL RAHMAN A.S', '1', '1', '2', '16', '1', '1', 'jl.balongrawe baru ', '-7.467554', '112.451936', '3', '4', 2017, '7', '4', '10', '-'),
+('M0004', 'YOGIN YUANITA', '2', '1', '2', '16', '1', '1', 'Griya permata meri D-1 / 08', '-7.482691', '112.448935', '4', '1', 2017, '8', '11', '1', '-');
 
 -- --------------------------------------------------------
 
@@ -396,8 +428,27 @@ INSERT INTO `ponpes_unit` (`id`, `id_ponpes`, `nama_unit`) VALUES
 
 CREATE TABLE `prodi` (
   `id` varchar(5) DEFAULT NULL,
-  `prodi` varchar(25) DEFAULT NULL
+  `prodi` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `prodi`
+--
+
+INSERT INTO `prodi` (`id`, `prodi`) VALUES
+('1', 'Manajemen'),
+('2', 'Akuntansi'),
+('3', 'Ilmu Komunikasi'),
+('4', 'Ilmu Pemerintah'),
+('5', 'Pendidikan Agama Islam'),
+('6', 'Pendidikan Bahasa Indonesia'),
+('7', 'Pendidikan Bahasa Inggris'),
+('8', 'Pendidikan Matematika'),
+('9', 'Teknik Mesin'),
+('10', 'Teknik Sipil'),
+('11', 'Teknik Industri'),
+('12', 'Teknik Informatika'),
+('13', 'Teknologi Hasil Pertanian');
 
 -- --------------------------------------------------------
 
@@ -431,6 +482,15 @@ CREATE TABLE `provinsi` (
   `prov` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `provinsi`
+--
+
+INSERT INTO `provinsi` (`id`, `prov`) VALUES
+('1', 'Jawa Timur'),
+('2', 'Jawa Tengah'),
+('3', 'Jawa Barat');
+
 -- --------------------------------------------------------
 
 --
@@ -444,6 +504,16 @@ CREATE TABLE `sklh` (
   `lat` varchar(16) NOT NULL,
   `lon` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sklh`
+--
+
+INSERT INTO `sklh` (`id`, `nama_sklh`, `alamat`, `lat`, `lon`) VALUES
+('1', 'SMAN 1 KOTA MOJOKERTO', 'JL IRIAN JAYA NO 01', '-7.484346', '112.43511'),
+('2', 'MA Bidayatul Hidayah', 'Mojogeneng, Jatirejo, Mojokerto', '-7.582033', '112.420493'),
+('3', 'smk negeri 1', 'jl.kedungsari', '-7.469124', '112.456552'),
+('4', 'SMA Tamansiswa', 'Jalan Taman siswa, No.30', '-7.465485', '112.438828');
 
 -- --------------------------------------------------------
 

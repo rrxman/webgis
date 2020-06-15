@@ -33,12 +33,12 @@ class Welcome extends CI_Controller {
 
 	public function geoJSON(){
 		$data = $this->db->get('dataponpes')->result_array();
-		echo geoJSON($data);
+		echo geojson($data);
 	}
 
 	public function geoJsonWilayahKab(){
 		$data = $this->feature->getWilayahKab();
-		echo geoJSON($data);
+		echo geojson($data);
 	}
 
 	public function geoJsonWilayahKota(){
@@ -59,6 +59,16 @@ class Welcome extends CI_Controller {
 	public function geoJsonC3(){
 		$data = $this->feature->getC3();
 		echo geoJSON($data);
+	}
+
+	public function geoJSONDomisili(){
+		$data = $this->db->get('mhs')->result_array();
+		echo geojson($data);
+	}
+
+	public function geoJSONSekolah(){
+		$data = $this->feature->getSekolah();
+		echo geojson($data);
 	}
 
 	public function map(){

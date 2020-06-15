@@ -7,9 +7,10 @@ class Model_mahasiswa extends CI_Model
 {	
 	public function getMahasiswa()
 	{
-		$kueri = "SELECT `mhs`.*,`kecamatan`.`kec`
-				  FROM (`mhs`
-				  JOIN `kecamatan` ON `mhs`.`kec` = `kecamatan`.`id_kecamatan`) ORDER BY `id` ASC";
+		$kueri = "SELECT `mhs`.*,`kabupaten`.`kab`, `sklh`.`nama_sklh`
+				  FROM ((`mhs`
+				  JOIN `kabupaten` ON `mhs`.`kab/kot` = `kabupaten`.`id`)
+				  JOIN `sklh` ON `mhs`.`asal_sekolah` = `sklh`.`id`) ORDER BY `id` ASC";
     	return $this->db->query($kueri)->result_array();
 	}
 

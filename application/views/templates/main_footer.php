@@ -138,12 +138,38 @@
         pointToLayer: optionIconC3
     }
 
+    function optionIconDomisili (feature, latlng){
+        let allIcon = L.icon({
+            iconUrl: baseUrl+'assets/img/home.png',
+            iconSize:     [30, 30] // size of the icon
+        })
+        return L.marker(latlng, {icon: allIcon})
+    }
+
+    let layerDomisili = {
+        pointToLayer: optionIconDomisili
+    }
+
+    function optionIconSekolah (feature, latlng){
+        let allIcon = L.icon({
+            iconUrl: baseUrl+'assets/img/school.png',
+            iconSize:     [30, 30] // size of the icon
+        })
+        return L.marker(latlng, {icon: allIcon})
+    }
+
+    let layerSekolah = {
+        pointToLayer: optionIconSekolah
+    }
+
     var allFeature = new L.geoJSON.ajax(baseUrl+"welcome/geoJSON", layerAll);
     var kabupatenFeature = new L.geoJSON.ajax(baseUrl+"welcome/geoJsonWilayahKab", layerKab);
     var kotaFeature = new L.geoJSON.ajax(baseUrl+"welcome/geoJsonWilayahKota", layerKota);
     var c1Feature = new L.geoJSON.ajax(baseUrl+"welcome/geoJsonC1", layerC1);
     var c2Feature = new L.geoJSON.ajax(baseUrl+"welcome/geoJsonC2", layerC2);
     var c3Feature = new L.geoJSON.ajax(baseUrl+"welcome/geoJsonC3", layerC3);
+    var domisiliFeature = new L.geoJSON.ajax(baseUrl+"welcome/geoJSONDomisili", layerDomisili);
+    var sekolahFeature = new L.geoJSON.ajax(baseUrl+"welcome/geoJSONSekolah", layerSekolah);
 
     allFeature.on('click', function(e){
         sidebar.toggle();
@@ -152,6 +178,18 @@
         document.getElementById('tgl').innerHTML = e.layer.feature.properties.tgl_berdiri;
         document.getElementById('jsantri').innerHTML = e.layer.feature.properties.jumlah_santri;
         document.getElementById('jtenaga').innerHTML = e.layer.feature.properties.jumlah_tenaga;
+    });
+
+    domisiliFeature.on('click', function(e){
+        sidebar.toggle();
+        document.getElementById('name').innerHTML = e.layer.feature.properties.nama;
+        document.getElementById('alamat').innerHTML = e.layer.feature.properties.alamat;
+    });
+
+    sekolahFeature.on('click', function(e){
+        sidebar.toggle();
+        document.getElementById('name').innerHTML = e.layer.feature.properties.nama_sklh;
+        document.getElementById('alamat').innerHTML = e.layer.feature.properties.alamat;
     });
 
     kabupatenFeature.on('click', function(e){
@@ -200,19 +238,16 @@
     });
     // Cari
     var searchControl = new L.Control.Search({
-        layer: allFeature,
-        propertyName: 'nama_ponpes'
+        layer: domisiliFeature,
+        propertyName: 'nama'
 
     });
 
     searchControl.on('search:locationfound', function(e) {
         console.log(e);
         sidebar.toggle();
-        document.getElementById('name').innerHTML = e.layer.feature.properties.nama_ponpes;
+        document.getElementById('name').innerHTML = e.layer.feature.properties.nama;
         document.getElementById('alamat').innerHTML = e.layer.feature.properties.alamat;
-        document.getElementById('tgl').innerHTML = e.layer.feature.properties.tgl_berdiri;
-        document.getElementById('jsantri').innerHTML = e.layer.feature.properties.jumlah_santri;
-        document.getElementById('jtenaga').innerHTML = e.layer.feature.properties.jumlah_tenaga;
 
     }).on('search:collapsed', function(e) {
         console.log(e);
@@ -239,13 +274,13 @@
     };
 
     var overlays = {
-        "Tampil": {
-            "Semua": allFeature
-        },
-        // "Wilayah": {
-        //     "Kabupaten": kabupatenFeature,
-        //     "Kota": kotaFeature
+        // "Tampil": {
+        //     "Semua": allFeature
         // },
+        "Filter": {
+            "Domisili": domisiliFeature,
+            "Asal Sekolah": sekolahFeature
+        },
         // "Kelompok": {
         //     "Besar": c1Feature,
         //     "Menengah": c2Feature,

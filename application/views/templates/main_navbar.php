@@ -13,7 +13,7 @@
                 <a class="nav-item nav-link <?php if($this->uri->segment(2) == "map") { echo "active"; } ?>" href="<?php echo base_url('welcome/map'); ?>">Peta</a>
                 <a class="nav-item nav-link <?php if($this->uri->segment(2) == "about") { echo "active"; } ?>" href="<?php echo base_url('welcome/about') ?>">Tentang Kami</a>
                 <a class="nav-item nav-link <?php if($this->uri->segment(2) == "contact") { echo "active"; } ?>" href="<?php echo base_url('welcome/contact') ?>">Kontak Kami</a>
-                <a class="nav-item btn btn-primary" href="<?= base_url('auth'); ?>">Masuk</a>
+                <a class="nav-item btn btn-success" href="<?= base_url('auth'); ?>">Masuk</a>
               </div>
             </div>
           </div>
