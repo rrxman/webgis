@@ -7,8 +7,8 @@
         </div>
       </div>
       <!-- End Jumbotron -->
-      <div class="container container-fluid  img">
-      	<div class="row">
+      <div class="container container-fluid img">
+      	<div class="row mt-5">
       		<div class="col-md-4">
       			<div class="card" style="width: 18rem;">
 				  <img class="card-img-top" src="<?php echo base_url('assets/img/maps.jpg'); ?>" alt="Card image cap">

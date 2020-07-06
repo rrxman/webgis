@@ -38,8 +38,8 @@
                       <td>
                         <!-- <a class="badge badge-pill badge-success" href="<?php echo base_url('admin/edit_data/') . $mahasiswa['id']; ?>">Edit</a>
                         <a class="badge badge-pill badge-warning" href="<?php echo base_url('admin/detail/') . $mahasiswa['id']; ?>">Detil</a> -->
-                        <a class="badge badge-pill badge-success" href="#">Edit</a>
-                        <a class="badge badge-pill badge-warning" href="#">Detil</a>
+                        <a class="badge badge-pill badge-success" href="<?php echo base_url('admin/edit_data/') . $mahasiswa['id']; ?>">Edit</a>
+                        <!-- <a class="badge badge-pill badge-warning" href="#">Detil</a> -->
                         <a class="badge badge-pill badge-danger" data-toggle="modal" data-target="#modalHapus" href="<?php echo base_url('admin/hapus/') . $mahasiswa['id']; ?>">Hapus</a>
                       </td>
                     </tr>

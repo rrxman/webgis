@@ -140,6 +140,22 @@
         } );
       </script>
 
+      <script type="text/javascript">
+        $(document).ready(function () {
+          $('#table-sekolah').DataTable( { 
+            "scrollX": true,
+            "columnDefs": [
+            { "width": "5px", "targets": 0 },
+            { "width": "250px", "targets": 1 },
+            { "width": "250px", "targets": 2 },
+            { "width": "150px", "targets": 3 },
+            { "width": "150px", "targets": 4 },
+            { "width": "100px", "targets": 5 },
+            ]
+          } );
+        } );
+      </script>
+
       <script>
         $('.custom-file-input').on('change', function() {
           let fileName = $(this).val().split('\\').pop();

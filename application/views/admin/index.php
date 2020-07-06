@@ -49,8 +49,8 @@
         				</div>
         			</div>
         		</div>
-        	</div>
-            <div id="cluster" height="200"></div> -->
+        	</div> -->
+          <div id="cluster" height="200"></div>
         </div>
         <!-- /.container-fluid -->
 
@@ -60,8 +60,8 @@
   <?php
   /* Mengambil query report*/
   foreach($chartHasil as $result){
-        $cluster[] = $result['max']; //ambil bulan
-        $value[] = (float)$result['nilai'];//ambil nilai
+        $cluster[] = $result['nama_sklh']; //ambil bulan
+        $value[] = (float)$result['jumlah_mahasiswa'];//ambil nilai
         
       }
       
@@ -83,7 +83,7 @@
               }
             },
             title: {
-              text: 'Statistik Data Mahasiswa berdasarkan Daerah Asal',
+              text: 'Statistik Data Mahasiswa berdasarkan Sekolah',
               style: {
                 fontSize: '18px',
                 fontFamily: 'Verdana, sans-serif'
@@ -117,7 +117,7 @@
           },
           tooltip: {
            formatter: function() {
-             return 'Pondok Pesantren yang berada di kelompok <b>' + this.x + '</b> berjumlah <b>' + Highcharts.numberFormat(this.y,0) + '</b>, di '+ this.series.name;
+             return 'Mahasiswa yang berasal dari <b>' + this.x + '</b> berjumlah <b>' + Highcharts.numberFormat(this.y,0) + '</b>, di '+ this.series.name;
            }
          },
          series: [{

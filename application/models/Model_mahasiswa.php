@@ -137,7 +137,8 @@ class Model_mahasiswa extends CI_Model
 	public function chart(){
 		$query = "SELECT `max`, COUNT(*) AS `nilai`
 					FROM 	`max_cluster`
-					GROUP BY `max`";
+					GROUP BY `max`
+					ORDER BY `nilai` DESC";
 		return $this->db->query($query)->result_array();
 	}
 
@@ -145,5 +146,13 @@ class Model_mahasiswa extends CI_Model
 	{
 		$query = $this->db->get_where('hasil', array('id_hasil' => $id ))->row_array();
 		return $query;
+	}
+
+	public function countMahasiswa(){
+		$query = "SELECT `nama_sklh`, COUNT(*) AS `jumlah_mahasiswa`
+					FROM `sklh` LEFT OUTER JOIN `mhs` ON `sklh`.`id` = `mhs`.`asal_sekolah`
+					GROUP BY `sklh`.`nama_sklh`
+					ORDER BY `jumlah_mahasiswa` DESC , `sklh`.`nama_sklh`";
+		return $this->db->query($query)->result_array();
 	}
 }

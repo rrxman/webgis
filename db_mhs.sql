@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 15, 2020 at 06:10 PM
+-- Generation Time: Jul 06, 2020 at 03:33 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.27
 
@@ -150,6 +150,25 @@ INSERT INTO `hasil` (`id_hasil`, `id_ponpes`, `c1`, `c2`, `c3`, `id_cluster`) VA
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `jenis_kelamin`
+--
+
+CREATE TABLE `jenis_kelamin` (
+  `id_jk` int(11) NOT NULL,
+  `jk` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `jenis_kelamin`
+--
+
+INSERT INTO `jenis_kelamin` (`id_jk`, `jk`) VALUES
+(1, 'Laki-laki'),
+(2, 'Perempuan');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `jurus`
 --
 
@@ -176,6 +195,27 @@ INSERT INTO `jurus` (`id`, `jurusan`) VALUES
 ('11', 'Teknik Industri'),
 ('12', 'Teknik Informatika'),
 ('13', 'Teknologi Hasil Pertanian');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jurusan`
+--
+
+CREATE TABLE `jurusan` (
+  `id_jurus` int(11) NOT NULL,
+  `jurusan` varchar(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `jurusan`
+--
+
+INSERT INTO `jurusan` (`id_jurus`, `jurusan`) VALUES
+(1, 'IPA'),
+(2, 'IPS'),
+(3, 'Bahasa'),
+(4, 'Lainnya');
 
 -- --------------------------------------------------------
 
@@ -233,6 +273,26 @@ INSERT INTO `kecamatan` (`id_kecamatan`, `kec`) VALUES
 (16, 'Sooko'),
 (17, 'Trawas'),
 (18, 'Trowulan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kewarganegaraan`
+--
+
+CREATE TABLE `kewarganegaraan` (
+  `id_warga` int(11) NOT NULL,
+  `warga` varchar(16) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kewarganegaraan`
+--
+
+INSERT INTO `kewarganegaraan` (`id_warga`, `warga`) VALUES
+(1, 'WNI'),
+(2, 'WNI Keturunan'),
+(3, 'WNA');
 
 -- --------------------------------------------------------
 
@@ -309,16 +369,6 @@ CREATE TABLE `mhs` (
   `prodi3` varchar(25) DEFAULT NULL,
   `dtail_pres` varchar(128) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `mhs`
---
-
-INSERT INTO `mhs` (`id`, `nama`, `jk`, `kewarganegaraan`, `stts_sipil`, `kec`, `kab/kot`, `prov`, `alamat`, `lat`, `lon`, `asal_sekolah`, `jurusan`, `thn_lulus`, `prodi1`, `prodi2`, `prodi3`, `dtail_pres`) VALUES
-('M0001', 'ABDULLAH KHASIB AGUS JAUHARI', '1', '1', '2', '15', '1', '1', 'DUSUN KENANTEN RT. 003 RW. 002 Kel. KENANTEN', '-7.497093', '112.445048', '1', '1', 2014, '12', '10', '7', '-'),
-('M0002', 'DANY SUWARNO', '1', '1', '2', '16', '1', '1', 'Dsn. Kedawung Ds. Gemekan Kec. Sooko', '-7.526350', '112.405222', '2', '2', 2016, '12', '7', '2', '-'),
-('M0003', 'SYAM ABDUL RAHMAN A.S', '1', '1', '2', '16', '1', '1', 'jl.balongrawe baru ', '-7.467554', '112.451936', '3', '4', 2017, '7', '4', '10', '-'),
-('M0004', 'YOGIN YUANITA', '2', '1', '2', '16', '1', '1', 'Griya permata meri D-1 / 08', '-7.482691', '112.448935', '4', '1', 2017, '8', '11', '1', '-');
 
 -- --------------------------------------------------------
 
@@ -505,15 +555,26 @@ CREATE TABLE `sklh` (
   `lon` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `sklh`
+-- Table structure for table `status_sipil`
 --
 
-INSERT INTO `sklh` (`id`, `nama_sklh`, `alamat`, `lat`, `lon`) VALUES
-('1', 'SMAN 1 KOTA MOJOKERTO', 'JL IRIAN JAYA NO 01', '-7.484346', '112.43511'),
-('2', 'MA Bidayatul Hidayah', 'Mojogeneng, Jatirejo, Mojokerto', '-7.582033', '112.420493'),
-('3', 'smk negeri 1', 'jl.kedungsari', '-7.469124', '112.456552'),
-('4', 'SMA Tamansiswa', 'Jalan Taman siswa, No.30', '-7.465485', '112.438828');
+CREATE TABLE `status_sipil` (
+  `id_stts` int(11) NOT NULL,
+  `status` varchar(16) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `status_sipil`
+--
+
+INSERT INTO `status_sipil` (`id_stts`, `status`) VALUES
+(1, 'Menikah'),
+(2, 'Belum Menikah'),
+(3, 'Janda'),
+(4, 'Duda');
 
 -- --------------------------------------------------------
 
@@ -536,7 +597,8 @@ INSERT INTO `tb_access` (`id`, `role_id`, `menu_id`) VALUES
 (19, 1, 3),
 (20, 1, 4),
 (22, 2, 3),
-(23, 2, 2);
+(23, 2, 2),
+(25, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -641,7 +703,8 @@ INSERT INTO `tb_usersubmenu` (`id`, `id_menu`, `judul`, `url`, `icon`, `aktif`) 
 (9, 3, 'Ganti Kata Sandi', 'user/changepassword', 'fas fa-fw fa-key', 1),
 (10, 1, 'Data Mahasiswa', 'admin/dataMahasiswa', 'fas fa-fw fa-database', 1),
 (11, 2, 'Profil Lembaga', 'user/profile_company', 'fas fa-fw fa-building', 1),
-(12, 2, 'Edit Pondok Pesantren', 'user/change_company', 'fas fa-fw fa-edit', 1);
+(12, 2, 'Edit Pondok Pesantren', 'user/change_company', 'fas fa-fw fa-edit', 1),
+(13, 1, 'Data Sekolah', 'admin/sekolah', 'fa fa-school', 1);
 
 -- --------------------------------------------------------
 
@@ -698,10 +761,28 @@ ALTER TABLE `hasil`
   ADD PRIMARY KEY (`id_hasil`);
 
 --
+-- Indexes for table `jenis_kelamin`
+--
+ALTER TABLE `jenis_kelamin`
+  ADD PRIMARY KEY (`id_jk`);
+
+--
+-- Indexes for table `jurusan`
+--
+ALTER TABLE `jurusan`
+  ADD PRIMARY KEY (`id_jurus`);
+
+--
 -- Indexes for table `kecamatan`
 --
 ALTER TABLE `kecamatan`
   ADD PRIMARY KEY (`id_kecamatan`);
+
+--
+-- Indexes for table `kewarganegaraan`
+--
+ALTER TABLE `kewarganegaraan`
+  ADD PRIMARY KEY (`id_warga`);
 
 --
 -- Indexes for table `kriteria`
@@ -745,6 +826,12 @@ ALTER TABLE `provinsi`
 --
 ALTER TABLE `sklh`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `status_sipil`
+--
+ALTER TABLE `status_sipil`
+  ADD PRIMARY KEY (`id_stts`);
 
 --
 -- Indexes for table `tb_access`
@@ -802,10 +889,28 @@ ALTER TABLE `hasil`
   MODIFY `id_hasil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `jenis_kelamin`
+--
+ALTER TABLE `jenis_kelamin`
+  MODIFY `id_jk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `jurusan`
+--
+ALTER TABLE `jurusan`
+  MODIFY `id_jurus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `kecamatan`
 --
 ALTER TABLE `kecamatan`
   MODIFY `id_kecamatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `kewarganegaraan`
+--
+ALTER TABLE `kewarganegaraan`
+  MODIFY `id_warga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `kriteria`
@@ -832,10 +937,16 @@ ALTER TABLE `program_pendidikan`
   MODIFY `id_program` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `status_sipil`
+--
+ALTER TABLE `status_sipil`
+  MODIFY `id_stts` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `tb_access`
 --
 ALTER TABLE `tb_access`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `tb_role`
@@ -859,7 +970,7 @@ ALTER TABLE `tb_usermenu`
 -- AUTO_INCREMENT for table `tb_usersubmenu`
 --
 ALTER TABLE `tb_usersubmenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `tb_usertoken`

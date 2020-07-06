@@ -7,99 +7,142 @@
             <div class="body">
               <div class="row mb-3">
                 <div class="col-lg-4">
-                  <label for="nspp">NSPP:</label>
-                  <input type="hidden" name="id" id="id" value="<?php echo $pontren['id_ponpes']; ?>">
+                  <label for="nama">Nama Mahasiswa</label>
+                  <input type="hidden" name="id" id="id" value="<?php echo $pontren['id']; ?>">
                   <input type="hidden" name="updater" id="updater" value="<?php echo $user['email']; ?>">
-                  <input type="text" class="form-control" id="nspp" name="nspp" placeholder="Masukkan NSPP" value="<?php echo $pontren['nspp']; ?>">
+                  <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Mahasiswa" onfocus="true" value="<?php echo $pontren['nama']?>">
                 </div>
                 <div class="col-lg-8">
-                  <label for="nama">Nama Pondok Pesantren:</label>
-                  <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Pondok Pesantren" value="<?php echo $pontren['nama_ponpes']; ?>">
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="alamat">Alamat:</label>
-                <textarea type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan Alamat" rows="4"><?php echo $pontren['alamat']; ?></textarea>
-              </div>
-              <div class="row mb-3">
-                <div class="col-lg-4">
-                  <label for="kecamatan">Kecamatan:</label>
-                  <select name="kecamatan" id="kecamatan" class="form-control">
-                    <option value="<?php echo $pontren['id_kecamatan']; ?>">Pilih Kecamatan</option>
-                    <?php foreach($dataKecamatan as $kecamatan) : ?>
-                      <option value="<?= $kecamatan['id_kecamatan']; ?>" <?php echo $kecamatan['id_kecamatan'] == $pontren['id_kecamatan'] ? "selected" : null ?>><?= $kecamatan['kec']; ?></option>
+                  <label for="jk">Jenis Kelamin</label>
+                  <select name="jk" id="jk" class="form-control">
+                    <option value="">Pilih Jenis Kelamin</option>
+                    <?php foreach($jk as $j) : ?>
+                      <option value="<?= $j['id_jk']; ?>" <?php echo $j['id_jk'] == $pontren['jk'] ? "selected" : null ?>><?= $j['jk']; ?></option>
                     <?php endforeach; ?>
                   </select>
                 </div>
-
-                <div class="col-lg-8">
-                  <label for="lat">
-                    Lokasi Koordinat : <a href="http://www.latlong.net" class="tooltip-test" target="_blank">Cari koordinat</a>
-                  </label>
-                  <div class="row">
-                    <div class="col-8 col-lg-6">
-                      <input type="text" class="form-control" id="lat" name="lat" placeholder="Latitude" value="<?php echo $pontren['lat']; ?>">
-                    </div>
-                    <div class="col-4 col-lg-6">
-                      <input type="text" class="form-control" id="lon" name="lon" placeholder="Longitude" value="<?php echo $pontren['lon']; ?>">
-                    </div>
-                  </div>
-                </div>
               </div>
-
               <div class="form-group">
-                <label for="tanggal">Tanggal Berdiri:</label>
-                <input type="date" class="form-control" id="tanggal" name="tanggal" value="<?php echo $pontren['tgl_berdiri']; ?>">
+                <label for="wn">Kewarganegaraan</label>
+                <select name="wn" id="wn" class="form-control">
+                    <option value="">Pilih Kewarganegaraan</option>
+                    <?php foreach($warganegara as $w) : ?>
+                      <option value="<?= $w['id_warga']; ?>" <?php echo $w['id_warga'] == $pontren['kewarganegaraan'] ? "selected" : null ?>><?= $w['warga']; ?></option>
+                    <?php endforeach; ?>
+                  </select>
               </div>
-
               <div class="form-group">
-                <label for="yayasan">Nama Yayasan</label>
-                <input type="text" class="form-control" id="yayasan" name="yayasan" placeholder="Masukkan Nama Yayasan" value="<?php echo $pontren['yayasan']; ?>">
-              </div>
-              <div class="row mb-2">
-                <div class="col-sm-3">
-                  <ul class="list-group">
-                    <a href="" data-toggle="modal" data-target="#modalUnit"><li class="list-group-item font-weight-bold list-group-item-dark d-flex justify-content-between align-items-center">Unit Pendidikan <span class="badge badge-primary badge-pill"><?php echo $pontren['jumlah_unit']; ?></span></li></a> 
-                  </ul>
-                </div>
-                <div class="col-sm-7">
-                  <div class="form-group">
-                    <select multiple name="program[]" id="program" class="form-control" size="5">
-                      <option value="TPQ/LPQ">TPQ/LPQ</option>
-                      <option value="Diniyah">Diniyah</option>
-                      <option value="PP. Umum">PP. Umum</option>
-                      <option value="PP. Wajar DIKDAS">PP. Wajar DIKDAS</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-lg-2">
-                  <div class="form-group">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addOptionModal" onclick="document.getElementById('nilai').value = ''">
-                      Tambah Unit
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-8 col-lg-6">
-                  <label for="jsantri">Jumlah Santri</label>
-                  <input type="text" class="form-control" id="jsantri" name="jsantri" placeholder="Masukkan Jumlah Santri" value="<?php echo $pontren['jumlah_santri']; ?>">
-                </div>
-                <div class="col-4 col-lg-6">
-                  <label for="jtenaga">Jumlah Ketenagaan</label>
-                  <input type="text" class="form-control" id="jtenaga" name="jtenaga" placeholder="Masukkan Jumlah Tenaga" value="<?php echo $pontren['jumlah_tenaga']; ?>">
-                </div>
-              </div>
-
-              <div class="form-group mt-3">
-                <label for="daerah">Keterangan:</label>
-                <select name="daerah" id="daerah" class="form-control">
-                  <option value="">Pilih Jenis Daerah</option>
-                  <?php foreach($dataDaerah as $drh) : ?>
-                    <option value="<?= $drh['id_daerah']; ?>" <?php echo $drh['id_daerah'] == $pontren['id_daerah'] ? "selected" : null ?>><?= $drh['jenis_daerah']; ?></option>
+                <label for="stts">Status Sipil</label>
+                <select name="stts" id="stts" class="form-control">
+                  <option value="">Pilih Status</option>
+                  <?php foreach($stts as $s) : ?>
+                    <option value="<?= $s['id_stts']; ?>" <?php echo $s['id_stts'] == $pontren['stts_sipil'] ? "selected" : null ?>><?= $s['status']; ?></option>
                   <?php endforeach; ?>
                 </select>
+              </div>
+              <div class="row mb-3">
+                <div class="col-lg-4">
+                  <label for="kec">Kecamatan</label>
+                  <select name="kec" id="kec" class="form-control">
+                    <option value="">Pilih Kecamatan</option>
+                    <?php foreach($dataKecamatan as $kec) : ?>
+                      <option value="<?= $kec['id_kecamatan']; ?>" <?php echo $kec['id_kecamatan'] == $pontren['kec'] ? "selected" : null ?>><?= $kec['kec']; ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="col-lg-4">
+                  <label for="kab">Kabupaten</label>
+                  <select name="kab" id="kab" class="form-control">
+                    <option value="">Pilih Kabupaten</option>
+                    <?php foreach($dataKabupaten as $kab) : ?>
+                      <option value="<?= $kab['id']; ?>" <?php echo $kab['id'] == $pontren['kab/kot'] ? "selected" : null ?>><?= $kab['kab']; ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="col-lg-4">
+                  <label for="sklh">Provinsi</label>
+                  <select name="prov" id="prov" class="form-control">
+                    <option value="">Pilih Provinsi</option>
+                    <?php foreach($dataProvinsi as $prov) : ?>
+                      <option value="<?= $prov['id']; ?>" <?php echo $prov['id'] == $pontren['prov'] ? "selected" : null ?>><?= $prov['prov']; ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="alamat">Alamat</label>
+                <textarea type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan Alamat" rows="4"><?php echo $pontren['alamat']?></textarea>
+              </div>
+              <div class="row mb-3">
+                <div class="col-lg-6">
+                  <label for="lat">Latitude</label>
+                  <input type="text" class="form-control" id="lat" name="lat" placeholder="Masukkan Latitude" onfocus="true" value="<?php echo $pontren['lat']?>">
+                </div>
+                <div class="col-lg-6">
+                  <label for="lon">Longitude</label>
+                  <input type="text" class="form-control" id="lon" name="lon" placeholder="Masukkan Longitude" onfocus="true" value="<?php echo $pontren['lon']?>">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-lg-6">
+                  <label for="sekolah">Asal Sekolah</label>
+                  <!-- <input type="text" class="form-control" id="sekolah" name="sekolah" placeholder="Masukkan Asal Sekolah"> -->
+                  <select name="sklh" id="sklh" class="form-control">
+                    <option value="">Pilih Sekolah</option>
+                    <?php foreach($dataSekolah as $sklh) : ?>
+                      <option value="<?= $sklh['id']; ?>" <?php echo $sklh['id'] == $pontren['asal_sekolah'] ? "selected" : null ?>><?= $sklh['nama_sklh']; ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="col-lg-6">
+                  <label for="jurusan">Jurusan & Tahun Lulus</label>
+                  <div class="row">
+                    <div class="col-8 col-lg-6">  
+                      <select name="jurusan" id="jurusan" class="form-control">
+                        <option value="">Pilih Jurusan</option>
+                        <?php foreach($jurusan as $j) : ?>
+                          <option value="<?= $j['id_jurus']; ?>" <?php echo $j['id_jurus'] == $pontren['jurusan'] ? "selected" : null ?>><?= $j['jurusan']; ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                    <div class="col-4 col-lg-6">
+                      <input type="text" class="form-control" id="lulus" name="lulus" placeholder="Tahun Lulus" value="<?php echo $pontren['thn_lulus']?>">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-lg-4">
+                  <label for="prodi1">Program Studi 1</label>
+                  <select name="prodi1" id="prodi1" class="form-control">
+                    <option value="">Pilih Prodi 1</option>
+                    <?php foreach($dataProdi as $prodi) : ?>
+                      <option value="<?= $prodi['id']; ?>" <?php echo $prodi['id'] == $pontren['prodi1'] ? "selected" : null ?>><?= $prodi['prodi']; ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="col-lg-4">
+                  <label for="prodi2">Program Studi 2</label>
+                  <select name="prodi2" id="prodi2" class="form-control">
+                    <option value="">Pilih Prodi 2</option>
+                    <?php foreach($dataProdi as $prodi) : ?>
+                      <option value="<?= $prodi['id']; ?>" <?php echo $prodi['id'] == $pontren['prodi2'] ? "selected" : null ?>><?= $prodi['prodi']; ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+                <div class="col-lg-4">
+                  <label for="prodi3">Program Studi 3</label>
+                  <select name="prodi3" id="prodi3" class="form-control">
+                    <option value="">Pilih Prodi 3</option>
+                    <?php foreach($dataProdi as $prodi) : ?>
+                      <option value="<?= $prodi['id']; ?>" <?php echo $prodi['id'] == $pontren['prodi3'] ? "selected" : null ?>><?= $prodi['prodi']; ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="prestasi">Detail Prestasi</label>
+                <textarea type="text" class="form-control" id="prestasi" name="prestasi" placeholder="Masukkan Detail Prestasi" rows="4"><?php echo $pontren['dtail_pres']?></textarea>
               </div>
             </div>
             <div class="modal-footer">

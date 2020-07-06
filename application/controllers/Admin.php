@@ -19,7 +19,10 @@ class Admin extends CI_Controller {
 		$data['totalUser'] = $this->Model_mahasiswa->totalOperator();
 		$data['totalData'] = $this->db->count_all_results('mhs');
 		$data['totalAnalyze'] = $this->db->count_all_results('hasil');
-		$data['chartHasil'] = $this->Model_mahasiswa->chart();
+		$data['chartHasil'] = $this->Model_mahasiswa->countMahasiswa();
+		$coba = $this->Model_mahasiswa->countMahasiswa();
+		// var_dump($coba);
+		// die;
 
 		$this->load->view('templates/user_header', $data);
 		$this->load->view('templates/user_sidebar', $data);
@@ -166,6 +169,10 @@ class Admin extends CI_Controller {
 		$data['dataProvinsi'] = $this->db->get('provinsi')->result_array();
 		$data['dataSekolah'] = $this->db->get('sklh')->result_array();
 		$data['dataProdi'] = $this->db->get('prodi')->result_array();
+		$data['jurusan'] = $this->db->get('jurusan')->result_array();
+		$data['jk'] = $this->db->get('jenis_kelamin')->result_array();
+		$data['warganegara'] = $this->db->get('kewarganegaraan')->result_array();
+		$data['stts'] = $this->db->get('status_sipil')->result_array();
 		$this->load->view('templates/user_header', $data);
 		$this->load->view('templates/user_sidebar', $data);
 		$this->load->view('templates/user_topbar', $data);
@@ -180,25 +187,28 @@ class Admin extends CI_Controller {
 		} else {
 			$unit = sizeof($data_unit);
 		}
-		$countUnit = $this->db->where('id_ponpes', $this->input->post('id'))->from('ponpes_unit')->count_all_results() + $unit;
+		$countUnit = $this->db->where('id', $this->input->post('id'))->from('ponpes_unit')->count_all_results() + $unit;
 		$data = [
-			'nspp' => $this->input->post('nspp'),
-			'nama_ponpes' => $this->input->post('nama'),
+			'nama' => $this->input->post('nama'),
+			'jk' => $this->input->post('jk'),
+			'kewarganegaraan' => $this->input->post('wn'),
+			'stts_sipil' => $this->input->post('stts'),
+			'kec' => $this->input->post('kec'),
+			'kab/kot' => $this->input->post('kab'),
+			'prov' => $this->input->post('prov'),
 			'alamat' => $this->input->post('alamat'),
-			'id_kecamatan' => $this->input->post('kecamatan'),
-			'tgl_berdiri' => $this->input->post('tanggal'),
-			'yayasan' => $this->input->post('yayasan'),
-			'id_daerah' => $this->input->post('daerah'),
-			'jumlah_santri' => $this->input->post('jsantri'),
-			'jumlah_tenaga' => $this->input->post('jtenaga'),
-			'jumlah_unit' => $countUnit,
 			'lat' => $this->input->post('lat'),
 			'lon' => $this->input->post('lon'),
-			'pengupdate' => $this->input->post('updater'),
-			'tgl_update' => time()
+			'asal_sekolah' => $this->input->post('sklh'),
+			'jurusan' => $this->input->post('jurusan'),
+			'thn_lulus' => $this->input->post('lulus'),
+			'prodi1' => $this->input->post('prodi1'),
+			'prodi2' => $this->input->post('prodi2'),
+			'prodi3' => $this->input->post('prodi3'),
+			'dtail_pres' => $this->input->post('prestasi'),
 		];
 		$where = [
-			'id_ponpes' => $this->input->post('id')
+			'id' => $this->input->post('id')
 		];
 		if($data_unit){
 			foreach ($data_unit as $unit) {
@@ -209,13 +219,13 @@ class Admin extends CI_Controller {
 				$this->db->insert('ponpes_unit', $add_unit);
 			}
 		} else {
-			$this->Model_mahasiswa->update($where, $data, 'dataponpes');
+			$this->Model_mahasiswa->update($where, $data, 'mhs');
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data telah di ubah!</div>');
-			redirect('admin/dataponpes','refresh');
+			redirect('admin/datamahasiswa','refresh');
 		}
 		
 
-		$this->Model_mahasiswa->update($where, $data, 'dataponpes');
+		$this->Model_mahasiswa->update($where, $data, 'mhs');
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data telah di ubah!</div>');
 		redirect('admin/datamahasiswa','refresh');
 	}
@@ -225,6 +235,112 @@ class Admin extends CI_Controller {
 		$this->Model_mahasiswa->hapus_data($where, 'mhs');
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data telah di hapus!</div>');
 		redirect('admin/datamahasiswa');
+	}
+
+	public function sekolah(){
+		$data['user'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['title'] = 'Data Sekolah';
+		$data['sekolah'] = $this->db->get('sklh')->result_array();
+
+		$this->load->view('templates/user_header', $data);
+		$this->load->view('templates/user_sidebar', $data);
+		$this->load->view('templates/user_topbar', $data);
+		$this->load->view('admin/sekolah', $data);
+		$this->load->view('templates/user_footer');
+	}
+
+	public function add_sekolah(){
+		$data['user'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['title'] = 'Data Sekolah';
+		$data['getCode'] = $this->Model_autonumber->kodeSekolah();
+
+		$this->form_validation->set_rules('nama', 'Nama', 'required|trim', [
+			'required' => 'Nama Mahasiswa wajib diisi'
+		]);
+		$this->form_validation->set_rules('lat', 'Latitude', 'required|trim|numeric', [
+			'numeric' => 'Latitude salah. Inputan mengandung karakter atau huruf'
+		]);
+		$this->form_validation->set_rules('lon', 'Longitude', 'required|trim|numeric', [
+			'numeric' => 'Longitude salah. Inputan mengandung karakter atau huruf'
+		]);
+		
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templates/user_header', $data);
+			$this->load->view('templates/user_sidebar', $data);
+			$this->load->view('templates/user_topbar', $data);
+			$this->load->view('admin/add-sekolah', $data);
+			$this->load->view('templates/user_footer');
+		} else {
+			$data =[
+				'id' => $this->input->post('id'),
+				'nama_sklh' => $this->input->post('nama'),
+				'alamat' => $this->input->post('alamat'),
+				'lat' => $this->input->post('lat'),
+				'lon' => $this->input->post('lon'),
+			];
+			$this->db->insert('sklh', $data);
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data berhasil ditambahkan!</div>');
+			redirect('admin/sekolah');
+		}
+	}
+
+	public function edit_sekolah($id){
+		$data['user'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
+		$data['title'] = 'Edit Sekolah';
+		$where = array('id' => $id);
+
+		$data['pontren'] = $this->Model_mahasiswa->editMahasiswaById($where, 'sklh')->row_array();
+		$data['dataSekolah'] = $this->db->get('sklh')->result_array();
+
+		$this->load->view('templates/user_header', $data);
+		$this->load->view('templates/user_sidebar', $data);
+		$this->load->view('templates/user_topbar', $data);
+		$this->load->view('admin/edit-sekolah', $data);
+		$this->load->view('templates/user_footer');
+	}
+
+	public function update_sekolah(){
+		$data_unit = $this->input->post('program');
+		if($data_unit == null){
+			$unit = 0;
+		} else {
+			$unit = sizeof($data_unit);
+		}
+		$countUnit = $this->db->where('id', $this->input->post('id'))->from('ponpes_unit')->count_all_results() + $unit;
+		$data = [
+			'nama_sklh' => $this->input->post('nama'),
+			'alamat' => $this->input->post('alamat'),
+			'lat' => $this->input->post('lat'),
+			'lon' => $this->input->post('lon'),
+		];
+		$where = [
+			'id' => $this->input->post('id')
+		];
+		if($data_unit){
+			foreach ($data_unit as $unit) {
+				$add_unit = array(
+					'id_ponpes' => $this->input->post('id'),
+					'nama_unit' => $unit
+				);
+				$this->db->insert('ponpes_unit', $add_unit);
+			}
+		} else {
+			$this->Model_mahasiswa->update($where, $data, 'sklh');
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data telah di ubah!</div>');
+			redirect('admin/sekolah','refresh');
+		}
+		
+
+		$this->Model_mahasiswa->update($where, $data, 'sklh');
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data telah di ubah!</div>');
+		redirect('admin/sekolah','refresh');
+	}
+
+	public function hapus_sekolah($id){
+		$where = ['id' => $id];
+		$this->Model_mahasiswa->hapus_data($where, 'sklh');
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data telah di hapus!</div>');
+		redirect('admin/sekolah');
 	}
 
 	public function user(){

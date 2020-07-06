@@ -25,6 +25,24 @@ class Model_autonumber extends CI_Model {
 		return $createKode;
 	}
 
+	public function kodeSekolah()
+	{
+		$this->db->select('RIGHT(sklh.id, 4) as kode', FALSE);
+		$this->db->order_by('id', 'DESC');
+		$this->db->limit(1);
+		$query = $this->db->get('sklh');
+		if($query->num_rows() <> 0){
+			$data = $query->row();
+			$kode = intval($data->kode) + 1;
+		} else {
+			$kode = 1;
+		}
+
+		$kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT);
+		$createKode = "S".$kodemax;
+		return $createKode;
+	}
+
 	
 
 }
