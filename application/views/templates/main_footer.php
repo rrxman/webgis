@@ -183,13 +183,24 @@
     domisiliFeature.on('click', function(e){
         sidebar.toggle();
         document.getElementById('name').innerHTML = e.layer.feature.properties.nama;
+        document.getElementById('jk').innerHTML = e.layer.feature.properties.jk;
+        document.getElementById('warga').innerHTML = e.layer.feature.properties.kewarganegaraan;
+        document.getElementById('stts').innerHTML = e.layer.feature.properties.stts_sipil;
+        document.getElementById('kec').innerHTML = e.layer.feature.properties.kec;
+        document.getElementById('kab').innerHTML = e.layer.feature.properties.kab;
+        document.getElementById('prov').innerHTML = e.layer.feature.properties.prov;
         document.getElementById('alamat').innerHTML = e.layer.feature.properties.alamat;
+        document.getElementById('jurusan').innerHTML = e.layer.feature.properties.jurusan;
+        document.getElementById('lulus').innerHTML = e.layer.feature.properties.thn_lulus;
+        document.getElementById('prodi').innerHTML = e.layer.feature.properties.prodi1;
+        document.getElementById('pres').innerHTML = e.layer.feature.properties.dtail_pres;
+        document.getElementById('sekolah').innerHTML = '<a href="<?= base_url('welcome/detail/')?>' + e.layer.feature.properties.asal_sekolah + '">' + e.layer.feature.properties.nama_sklh + '</a>';
     });
 
     sekolahFeature.on('click', function(e){
         sidebar.toggle();
         document.getElementById('name').innerHTML = e.layer.feature.properties.nama_sklh;
-        document.getElementById('alamat').innerHTML = e.layer.feature.properties.alamat;
+        document.getElementById('alamat').innerHTML = '<a href="#">' + e.layer.feature.properties.alamat + '</a>';
     });
 
     kabupatenFeature.on('click', function(e){
@@ -290,5 +301,24 @@
 
     L.control.groupedLayers(baseMaps, overlays).addTo(mymap);
 </script>
+<!-- <script>
+    $(document).ready(function(){
+        $("#alamat").on("click", function(e){
+            e.preventDefault();
+            var targetUrl = $(this).attr('rel');
+            $.ajax({
+                url: targetUrl,
+                type: "GET",
+                success:function(){
+                    alert("done");
+                    return false;
+                },
+                error:function (){
+                    alert("testing error");
+                }
+            });
+        });
+    });
+</script> -->
 </body>
 </html>

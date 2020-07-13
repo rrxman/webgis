@@ -16,6 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css')?>">
+    <link href="<?= base_url('assets/');?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
     <link rel="stylesheet" href="<?php echo base_url('assets/css') ?>/L.Control.Sidebar.css" />

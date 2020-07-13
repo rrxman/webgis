@@ -16,8 +16,8 @@ class Admin extends CI_Controller {
 		$data['user'] = $this->db->get_where('tb_user', ['email' => $this->session->userdata('email')])->row_array();
 		$data['title'] = 'Dashboard';
 
-		$data['totalUser'] = $this->Model_mahasiswa->totalOperator();
-		$data['totalData'] = $this->db->count_all_results('mhs');
+		$data['totalSekolah'] = $this->db->count_all_results('sklh');
+		$data['totalMahasiswa'] = $this->db->count_all_results('mhs');
 		$data['totalAnalyze'] = $this->db->count_all_results('hasil');
 		$data['chartHasil'] = $this->Model_mahasiswa->countMahasiswa();
 		$coba = $this->Model_mahasiswa->countMahasiswa();

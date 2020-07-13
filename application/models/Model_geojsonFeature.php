@@ -10,6 +10,22 @@ class Model_geojsonFeature extends CI_Model {
 		return $this->db->query($query)->result_array();
 	}
 
+	public function getMahasiswa(){
+		$kueri = "SELECT `mhs`.*, `kabupaten`.`kab` AS `kab`, `sklh`.`nama_sklh`, `jenis_kelamin`.`jk`, `kewarganegaraan`.`warga` AS `kewarganegaraan`, `status_sipil`.`status` AS `stts_sipil`, `kecamatan`.`kec`, `provinsi`.`prov`, `jurusan`.`jurusan`, `prodi`.`prodi` AS `prodi1`
+				  FROM (((((((((`mhs`
+				  JOIN `kabupaten` ON `mhs`.`kab/kot` = `kabupaten`.`id`)
+				  JOIN `sklh` ON `mhs`.`asal_sekolah` = `sklh`.`id`)
+				  JOIN `jenis_kelamin` ON `mhs`.`jk` = `jenis_kelamin`.`id_jk`)
+				  JOIN `kewarganegaraan` ON `mhs`.`kewarganegaraan` = `kewarganegaraan`.`id_warga`)
+				  JOIN `status_sipil` ON `mhs`.`stts_sipil` = `status_sipil`.`id_stts`)
+				  JOIN `kecamatan` ON `mhs`.`kec` = `kecamatan`.`id_kecamatan`)
+				  JOIN `provinsi` ON `mhs`.`prov` = `provinsi`.`id`)
+				  JOIN `jurusan` ON `mhs`.`jurusan` = `jurusan`.`id_jurus`)
+				  JOIN `prodi` ON `mhs`.`prodi1` = `prodi`.`id`)
+				  ORDER BY `id` ASC";
+    	return $this->db->query($kueri)->result_array();
+	}
+
 	public function getWilayahKab(){
 		$query = "SELECT * FROM `dataponpes`
 					WHERE `id_daerah` = 1";
@@ -47,9 +63,11 @@ class Model_geojsonFeature extends CI_Model {
 		return $this->db->query($query)->result_array();
 	}
 
-
-	
-
+	public function getSekolahById($id)
+	{
+		$query = $this->db->get_where('sklh', array('id' => $id ))->row_array();
+		return $query;
+	}
 }
 
 /* End of file Model_geojsonFeature.php */

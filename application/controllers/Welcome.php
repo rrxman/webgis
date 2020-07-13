@@ -22,6 +22,7 @@ class Welcome extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('Model_geojsonFeature', 'feature');
+		$this->load->model('Model_mahasiswa', 'mhs');
 	}
 
 	public function index() {
@@ -29,6 +30,16 @@ class Welcome extends CI_Controller {
 		$this->load->view('templates/main_navbar');
 		$this->load->view('main/content');
 		$this->load->view('templates/main_footer');
+	}
+
+	public function detail($id){
+		$data['dataSekolah'] = $this->feature->getSekolahById($id);
+		$data['title'] = 'Data Sekolah';
+
+		$this->load->view('templates/main_header');
+		$this->load->view('templates/main_navbar');
+		$this->load->view('main/detail', $data);
+		$this->load->view('templates/main_footer', $data);
 	}
 
 	public function geoJSON(){
@@ -62,7 +73,7 @@ class Welcome extends CI_Controller {
 	}
 
 	public function geoJSONDomisili(){
-		$data = $this->db->get('mhs')->result_array();
+		$data = $this->feature->getMahasiswa();
 		echo geojson($data);
 	}
 

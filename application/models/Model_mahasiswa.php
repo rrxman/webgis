@@ -155,4 +155,13 @@ class Model_mahasiswa extends CI_Model
 					ORDER BY `jumlah_mahasiswa` DESC , `sklh`.`nama_sklh`";
 		return $this->db->query($query)->result_array();
 	}
+
+	public function countMahasiswaByIdSekolah($id){
+		$query = "SELECT `nama_sklh`, COUNT(*) AS `jumlah_mahasiswa`
+					FROM `sklh` LEFT OUTER JOIN `mhs` ON `sklh`.`id` = `mhs`.`asal_sekolah`
+					WHERE `id` = $id
+					GROUP BY `sklh`.`nama_sklh`
+					ORDER BY `jumlah_mahasiswa` DESC , `sklh`.`nama_sklh`";
+		return $this->db->query($query)->result_array();
+	}
 }
