@@ -209,7 +209,7 @@
     sekolahFeature.on('click', function(e){
         sidebar1.toggle();
         document.getElementById('name_sklh').innerHTML = e.layer.feature.properties.nama_sklh;
-        document.getElementById('alamat').innerHTML = e.layer.feature.properties.alamat_sekolah;
+        document.getElementById('alamat1').innerHTML = e.layer.feature.properties.alamat_sekolah;
     });
 
     kabupatenFeature.on('click', function(e){

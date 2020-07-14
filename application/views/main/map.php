@@ -59,7 +59,7 @@
     <tbody>
       <tr>
         <th>Alamat</th>
-        <td id="alamat"></td>
+        <td id="alamat1"></td>
       </tr>
     </tbody>
   </table>
