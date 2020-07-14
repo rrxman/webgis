@@ -43,6 +43,15 @@
     mymap.on('click', function () {
         sidebar.hide();
     })
+
+    var sidebar1 = L.control.sidebar('sidebar1', {
+        closeButton: true,
+        position: 'left'
+    });
+    mymap.addControl(sidebar1);
+    mymap.on('click', function () {
+        sidebar1.hide();
+    })
     // GPS Tracker
     var gps = new L.Control.Gps({
         // autoActive:true,
@@ -198,9 +207,9 @@
     });
 
     sekolahFeature.on('click', function(e){
-        sidebar.toggle();
-        document.getElementById('name').innerHTML = e.layer.feature.properties.nama_sklh;
-        document.getElementById('alamat').innerHTML = '<a href="#">' + e.layer.feature.properties.alamat + '</a>';
+        sidebar1.toggle();
+        document.getElementById('name_sklh').innerHTML = e.layer.feature.properties.nama_sklh;
+        document.getElementById('alamat').innerHTML = e.layer.feature.properties.alamat_sekolah;
     });
 
     kabupatenFeature.on('click', function(e){

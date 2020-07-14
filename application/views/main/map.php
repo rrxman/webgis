@@ -53,6 +53,17 @@
     </tbody>
   </table>
 </div>
+<div id="sidebar1">
+  <h1 id="name_sklh" class="h4 mb-4 text-gray-300"></h1>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>Alamat</th>
+        <td id="alamat"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <div id="mapid" class="sidebar-map"></div>
 
 <!-- Modal -->
